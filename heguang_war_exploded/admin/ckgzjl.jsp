@@ -133,7 +133,7 @@
                                     email = (String) session.getAttribute("email");
 
                             %>
-                            <li><a href="myself.jsp?email=<%=email%>"><%=name%></a></li>
+                            <li><a href="../home/myself.jsp?email=<%=email%>"><%=name%></a></li>
                             <li><a href="#footer">联系我们 </a></li>
                             <%
                                 if (session.getAttribute("admin")!=null){
@@ -172,8 +172,8 @@
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-7 mx-md-auto mx-sm-auto mx-auto pl-0">
                     <div class="logo">
-                        <a href="index.jsp">
-                            <img class="img-fluid" src="assets/img/logo.png" alt="">
+                        <a href="../home/index.jsp">
+                            <img class="img-fluid" src="../home/assets/img/heguanLogo.jpeg" alt="">
                         </a>
                     </div>
                 </div>
@@ -190,7 +190,7 @@
                         <h6>Mon - Sun : 09:00 - 18:00</h6>
                     </div>
                     <div class="header-info-box">
-                        <a class="header-quote-btn" href="doctors.jsp">立即预约 <i class="icofont icofont-caret-right"></i></a>
+                        <a class="header-quote-btn" href="../home/doctors.jsp">立即预约 <i class="icofont icofont-caret-right"></i></a>
                     </div>
                 </div>
                 <!-- end col -->
@@ -207,14 +207,14 @@
                     <div class="col-lg-9 d-lg-block d-md-none d-sm-none d-none ">
                         <nav class="navbar navbar-expand-lg justify-content-left">
                             <ul class="navbar-nav">
-                                <li><a href="isLogged.jsp" class="nav-link">主页</a></li>
-                                <li class="dropdown"><a href="about.jsp" class="nav-link">关于我们</a>
+                                <li><a href="../home/isLogged.jsp" class="nav-link">主页</a></li>
+                                <li class="dropdown"><a href="../home/about.jsp" class="nav-link">关于我们</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="about.jsp">关于和光</a></li>
-                                        <li><a href="doctors.jsp">团队</a></li>
+                                        <li><a href="../home/about.jsp">关于和光</a></li>
+                                        <li><a href="../home/doctors.jsp">团队</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a href="services.jsp" class="nav-link">业务范围</a>
+                                <li class="dropdown"><a href="../home/services.jsp" class="nav-link">业务范围</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="#services-xlfw">临床心理服务</a></li>
                                         <li><a href="#services-train">临床心理训练</a></li>
@@ -222,12 +222,12 @@
                                 </li>
                                 <li class="dropdown"><a href="#" class="nav-link">服务</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="appointment.jsp">预约</a></li>
-                                        <li><a href="testimonial.jsp">测试</a></li>
+                                        <li><a href="../home/appointment.jsp">预约</a></li>
+                                        <li><a href="../home/testimonial.jsp">测试</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="news.jsp" class="nav-link">新闻</a></li>
-                                <li><a href="contact.jsp" class="nav-link">加入我们</a></li>
+                                <li><a href="../home/news.jsp" class="nav-link">新闻</a></li>
+                                <li><a href="../home/contact.jsp" class="nav-link">加入我们</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -236,7 +236,7 @@
                             <ul class="navbar-nav">
                                 <li class="dropdown quick-search"><a href="#" class="nav-link">我想</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="doctors.jsp"><i class="icofont icofont-doctor-alt"></i> 找位医师</a></li>
+                                        <li><a href="../home/doctors.jsp"><i class="icofont icofont-doctor-alt"></i> 找位医师</a></li>
                                         <li><a href="#"><i class="icofont icofont-medical-sign"></i> 预定测试</a></li>
                                     </ul>
                                 </li>
@@ -255,48 +255,46 @@
                 <div class="mobile-menu">
                     <nav id="dropdown">
                         <ul class="navbar-nav">
-                            <li><a href="index.jsp">主页</a>
+                            <li><a href="../home/index.jsp">主页</a>
                                 <ul>
-                                    <li><a href="index.jsp">Home 1</a></li>
-                                    <li><a href="map.html">Home 2</a></li>
-                                    <li><a href="index-3.html">Home 3</a></li>
-                                    <li><a href="index-4.html">Home 4</a></li>
+                                    <li><a href="../home/index.jsp">Home 1</a></li>
+                                    <li><a href="../home/map.html">Home 2</a></li>
                                 </ul>
                             </li>
-                            <li><a href="about.jsp">关于我们</a>
+                            <li><a href="../home/about.jsp">关于我们</a>
                                 <ul>
-                                    <li><a href="about.jsp">关于和光</a></li>
-                                    <li><a href="doctors.jsp">团队</a></li>
-                                    <li><a href="single-doctor.jsp">医师列表</a></li>
+                                    <li><a href="../home/about.jsp">关于和光</a></li>
+                                    <li><a href="../home/doctors.jsp">团队</a></li>
+                                    <li><a href="../home/single-doctor.jsp">医师列表</a></li>
                                 </ul>
                             </li>
-                            <li><a href="services.jsp">业务范围</a>
+                            <li><a href="../home/services.jsp">业务范围</a>
                                 <ul>
-                                    <li><a href="services.jsp">Our All Services</a></li>
-                                    <li><a href="single-service.jsp">Accident & Emergency</a></li>
-                                    <li><a href="single-service.jsp">Health checks</a></li>
-                                    <li><a href="single-service.jsp">Home Care</a></li>
-                                    <li><a href="single-service.jsp">Diabetes & Endocrinology</a></li>
+                                    <li><a href="../home/services.jsp">Our All Services</a></li>
+                                    <li><a href="../home/single-service.jsp">Accident & Emergency</a></li>
+                                    <li><a href="../home/single-service.jsp">Health checks</a></li>
+                                    <li><a href="../home/single-service.jsp">Home Care</a></li>
+                                    <li><a href="../home/single-service.jsp">Diabetes & Endocrinology</a></li>
                                 </ul>
                             </li>
-                            <li><a href="news.jsp">风采</a></li>
+                            <li><a href="../home/news.jsp">风采</a></li>
                             <li><a href="#">服务</a>
                                 <ul>
-                                    <li><a href="appointment.jsp">预约</a></li>
-                                    <li><a href="testimonial.jsp">测试</a></li>
-                                    <li><a href="new-patient.jsp">就诊</a></li>
-                                    <li><a href="faq.jsp">疑问</a></li>
-                                    <li><a href="reports.jsp">就诊报告</a></li>
-                                    <li><a href="404.jsp">404 Page</a></li>
+                                    <li><a href="../home/appointment.jsp">预约</a></li>
+                                    <li><a href="../home/testimonial.jsp">测试</a></li>
+                                    <li><a href="../home/new-patient.jsp">就诊</a></li>
+                                    <li><a href="../home/faq.jsp">疑问</a></li>
+                                    <li><a href="../home/reports.jsp">就诊报告</a></li>
+                                    <li><a href="../home/404.jsp">404 Page</a></li>
                                 </ul>
                             </li>
-                            <li><a href="blog.jsp">新闻</a>
+                            <li><a href="../home/blog.jsp">新闻</a>
                                 <ul>
-                                    <li><a href="blog.jsp">Blog</a></li>
-                                    <li><a href="blog.jsp">Blog Single</a></li>
+                                    <li><a href="../home/blog.jsp">Blog</a></li>
+                                    <li><a href="../home/blog.jsp">Blog Single</a></li>
                                 </ul>
                             </li>
-                            <li><a href="contact.jsp">联系我们</a></li>
+                            <li><a href="../home/contact.jsp">联系我们</a></li>
                             <li><a href="#">我想</a>
                                 <ul>
                                     <li><a href="#"><i class="icofont icofont-doctor-alt"></i> 找位医师</a></li>
@@ -407,8 +405,6 @@
 
                                 //**连接数据库**
                                 try {
-                                    DB db = new DB();
-                                    db.connectToDB();
                                     if (!keywords.equals("")) {
                                         rs = db.likeQueryGZ("name",keywords);
                                     } else {

@@ -99,21 +99,37 @@
                     <div class="info-menu">
                         <ul>
                             <%
+
+                                DB db = new DB();
+                                db.connectToDB();
+
                                 String name = "游客";
-                                if (session.getAttribute("name")!=null){
+                                String email = "游客";
+                                if (session.getAttribute("name")!=null && session.getAttribute("email")!=null){
                                     name = (String) session.getAttribute("name");
+                                    email = (String) session.getAttribute("email");
 
                             %>
-                            <li><a href="#"><%=name%></a></li>
-                            <li><a href="#">预约 </a></li>
-                            <li><a href="#">联系我们 </a></li>
+                            <li><a href="../home/myself.jsp?email=<%=email%>"><%=name%></a></li>
+                            <li><a href="#footer">联系我们 </a></li>
                             <%
-                            }else{
+                                if (session.getAttribute("admin")!=null){
+
+                            %>
+                            <li><a href="../admin/home_menu.html">管理</a></li>
+                            <%
+
+                            }else if (session.getAttribute("zxsName")!=null){
+                            %>
+                            <li><a href="../zxs/zxs.jsp">管理</a></li>
+                            <%
+                                }
+
+                            } else{
                             %>
                             <li><a href="../login/login.html">登录</a></li>
                             <li><a href="../login/signup.html">注册</a></li>
-                            <li><a href="#">预约 </a></li>
-                            <li><a href="#">联系我们 </a></li>
+                            <li><a href="#footer">联系我们 </a></li>
                             <%
                                 }
                             %>
@@ -134,7 +150,7 @@
                 <div class="col-lg-3 col-md-3 col-sm-6 col-7 mx-md-auto mx-sm-auto mx-auto pl-0">
                     <div class="logo">
                         <a href="../home/index.jsp">
-                            <img class="img-fluid" src="../home/assets/img/logo.png" alt="">
+                            <img class="img-fluid" src="../home/assets/img/heguanLogo.jpeg" alt="">
                         </a>
                     </div>
                 </div>
@@ -151,7 +167,7 @@
                         <h6>Mon - Sun : 09:00 - 18:00</h6>
                     </div>
                     <div class="header-info-box">
-                        <a class="header-quote-btn" href="#">立即预约 <i class="icofont icofont-caret-right"></i></a>
+                        <a class="header-quote-btn" href="../home/doctors.jsp">立即预约 <i class="icofont icofont-caret-right"></i></a>
                     </div>
                 </div>
                 <!-- end col -->
@@ -168,35 +184,26 @@
                     <div class="col-lg-9 d-lg-block d-md-none d-sm-none d-none ">
                         <nav class="navbar navbar-expand-lg justify-content-left">
                             <ul class="navbar-nav">
-                                <li><a href="../home/index.jsp" class="nav-link">主页</a></li>
+                                <li><a href="../home/isLogged.jsp" class="nav-link">主页</a></li>
                                 <li class="dropdown"><a href="../home/about.jsp" class="nav-link">关于我们</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="../home/about.jsp">关于和光</a></li>
                                         <li><a href="../home/doctors.jsp">团队</a></li>
-                                        <li><a href="../home/single-doctor.jsp">医师列表</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a href="../home/services.jsp" class="nav-link">临床训练</a>
+                                <li class="dropdown"><a href="../home/services.jsp" class="nav-link">业务范围</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="../home/single-service.jsp">Accident & Emergency</a></li>
-                                        <li><a href="../home/single-service.jsp">Health checks</a></li>
-                                        <li><a href="../home/single-service.jsp">Home Care</a></li>
-                                        <li><a href="../home/single-service.jsp">Diabetes & Endocrinology</a></li>
+                                        <li><a href="#services-xlfw">临床心理服务</a></li>
+                                        <li><a href="#services-train">临床心理训练</a></li>
                                     </ul>
                                 </li>
-
                                 <li class="dropdown"><a href="#" class="nav-link">服务</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="../home/appointment.jsp">预约</a></li>
                                         <li><a href="../home/testimonial.jsp">测试</a></li>
-                                        <li><a href="../home/new-patient.jsp">就诊</a></li>
-                                        <li><a href="../home/faq.jsp">疑问</a></li>
-                                        <li><a href="../home/reports.jsp">就诊报告</a></li>
-                                        <li><a href="../home/404.jsp">404 Page</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="../home/news.jsp" class="nav-link">风采</a></li>
-                                <li><a href="../home/blog.jsp" class="nav-link">新闻</a></li>
+                                <li><a href="../home/news.jsp" class="nav-link">新闻</a></li>
                                 <li><a href="../home/contact.jsp" class="nav-link">加入我们</a></li>
                             </ul>
                         </nav>
@@ -206,10 +213,8 @@
                             <ul class="navbar-nav">
                                 <li class="dropdown quick-search"><a href="#" class="nav-link">我想</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#"><i class="icofont icofont-doctor-alt"></i> 找位医师</a></li>
-                                        <li><a href="#"><i class="icofont icofont-ui-calendar"></i> 预约医师</a></li>
+                                        <li><a href="../home/doctors.jsp"><i class="icofont icofont-doctor-alt"></i> 找位医师</a></li>
                                         <li><a href="#"><i class="icofont icofont-medical-sign"></i> 预定测试</a></li>
-                                        <li><a href="#"><i class="icofont icofont-prescription"></i> 申请报告 </a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -231,8 +236,6 @@
                                 <ul>
                                     <li><a href="../home/index.jsp">Home 1</a></li>
                                     <li><a href="../home/map.html">Home 2</a></li>
-                                    <li><a href="../home/index-3.html">Home 3</a></li>
-                                    <li><a href="../home/index-4.html">Home 4</a></li>
                                 </ul>
                             </li>
                             <li><a href="../home/about.jsp">关于我们</a>
