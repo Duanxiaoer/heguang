@@ -148,7 +148,7 @@
 				<div class="col-lg-3 col-md-3 col-sm-6 col-7 mx-md-auto mx-sm-auto mx-auto pl-0">
 					<div class="logo">
 						<a href="../home/index.jsp">
-							<img class="img-fluid" src="../home/assets/img/heguanLogo.jpeg" alt="">
+							<img class="img-fluid" src="../home/assets/img/logo.jpeg" alt="">
 						</a>
 					</div>
 				</div>
