@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <servlet>
+        <servlet-name>Servlet</servlet-name>
+        <servlet-class>heguang.org.cn.Servlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UploadPersonImg</servlet-name>
+        <servlet-class>heguang.org.cn.UploadPersonImg</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>setSparetime</servlet-name>
+        <servlet-class>heguang.org.cn.setSparetime</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>querySparetime</servlet-name>
+        <servlet-class>heguang.org.cn.querySparetime</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addService</servlet-name>
+        <servlet-class>heguang.org.cn.addService</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>Servlet</servlet-name>
+        <url-pattern>/Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadPersonImg</servlet-name>
+        <url-pattern>/UploadPersonImg</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>setSparetime</servlet-name>
+        <url-pattern>/setSparetime</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>querySparetime</servlet-name>
+        <url-pattern>/querySparetime</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addService</servlet-name>
+        <url-pattern>/addService</url-pattern>
+    </servlet-mapping>
+</web-app>
