@@ -10,6 +10,7 @@
 <%@ page import="heguang.org.cn.AlipayConfig"%>
 <%@ page import="com.alipay.api.*"%>
 <%@ page import="com.alipay.api.internal.util.*"%>
+<%@ page import="heguang.org.cn.DB" %>
 <%
 /* *
  * 功能：支付宝服务器同步通知页面
@@ -50,8 +51,13 @@
 		String trade_no = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"),"UTF-8");
 	
 		//付款金额
-		String total_amount = new String(request.getParameter("total_amount").getBytes("ISO-8859-1"),"UTF-8");
-		
+		int total_amount = Integer.parseInt(new String(request.getParameter("total_amount").getBytes("ISO-8859-1"),"UTF-8"));
+
+		DB db = new DB();
+		db.connectToDB();
+		db.updateYuE(session.getAttribute("email").toString(),total_amount);
+
+
 		out.println("trade_no:"+trade_no+"<br/>out_trade_no:"+out_trade_no+"<br/>total_amount:"+total_amount);
 	}else {
 		out.println("验签失败");
