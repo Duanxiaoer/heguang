@@ -58,6 +58,7 @@
 		db.updateYuE(session.getAttribute("email").toString(),total_amount);
 
 
+		out.print("<script>alert('"+session.getAttribute("email")+";"+total_amount+"')</script>");
 		out.println("trade_no:"+trade_no+"<br/>out_trade_no:"+out_trade_no+"<br/>total_amount:"+total_amount);
 	}else {
 		out.println("验签失败");
