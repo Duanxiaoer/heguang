@@ -19,6 +19,9 @@
     PrintWriter writer = response.getWriter();
     request.setCharacterEncoding("utf-8");
 
+    String date = request.getParameter("date");
+    String zxsName = request.getParameter("zxsName");
+
     String zxlb = request.getParameter("zxlb");
     String[] zxwts = request.getParameterValues("zxwt");
     String zxwt = "";
@@ -29,6 +32,7 @@
             zxwt = zxwt+";"+zxwts[i];
         }
     }
+
     String qzyy = request.getParameter("qzyy");
     String sfjsgxl = request.getParameter("sfjsgxl");
     String sfjsgjs = request.getParameter("sfjsgjs");
@@ -47,7 +51,6 @@
     String relationship = request.getParameter("relationship");
     String relationship_name = request.getParameter("relationship-name");
     String relationship_tel = request.getParameter("relationship-tel");
-    String date = request.getParameter("date");
 
     if (zxlb.isEmpty()|| zxwt.isEmpty()|| qzyy.isEmpty()|| sfjsgxl.isEmpty()|| sfjsgjs.isEmpty()|| sfzs.isEmpty()|| qita.isEmpty()||customerName.isEmpty()
             ||sex.isEmpty()||customerTel.isEmpty()||age.isEmpty()||location.isEmpty()||education.isEmpty()||job.isEmpty()||income.isEmpty()
@@ -56,7 +59,7 @@
         return;
     }
     HttpSession httpSession =request.getSession();
-    String svalue = (String) httpSession.getAttribute("admin");
+    String svalue = (String) httpSession.getAttribute("name");
     boolean online = false;
     if (svalue!=null){
         online = true;
@@ -64,11 +67,11 @@
     if (online){
         String kuaidiInfo = "\n 你已经登记成功";
 
-        db.insertZXDJ( zxlb, zxwt, qzyy, sfjsgxl, sfjsgjs, sfzs, qita, customerName, sex, customerTel, age, location, education,  job,  income,  marriage
-                , children, relationship, relationship_name,  relationship_tel,date,svalue);
+        db.insertZXDJ(date,zxsName,zxlb, zxwt, qzyy, sfjsgxl, sfjsgjs, sfzs, qita, customerName, sex, customerTel, age, location, education,  job,  income,  marriage
+                , children, relationship, relationship_name,  relationship_tel,svalue);
 
 //        SentEmail.sendEmail_kuaidi("scuxiaoer@126.com",kuaidiInfo);
-        writer.print("<script>alert('登记成功！');window.location='ckdjjl.jsp'</script>");
+        writer.print("<script>alert('登记成功！');window.location='../home/myself.jsp'</script>");
     }else{
         writer.print("<script>alert('操作超时，请重新登录！');window.location='../login/login.html'</script>");
     }

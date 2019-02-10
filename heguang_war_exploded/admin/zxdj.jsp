@@ -1,6 +1,6 @@
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <%@ page contentType="text/html; charset=gb2312"%>
     <title>咨询登记</title>
     <link rel="stylesheet" media="screen" href="css/css.css" />
 
@@ -55,6 +55,36 @@
     <!-- fieldsets -->
     <fieldset>
         <table style="width: 100%">
+            <tr>
+                <td  class="c1" align="left"><h2 class="fs-subtitle-1">咨询时间:</h2></td>
+                <td class="c2" >
+                    <%
+                        response.setCharacterEncoding("UTF-8");
+                        request.setCharacterEncoding("UTF-8");
+
+                        int date = Integer.parseInt(request.getParameter("date"));
+                        int ks = Integer.parseInt(request.getParameter("ks"));
+                        int js = Integer.parseInt(request.getParameter("js"));
+
+                        String info = "";
+                        if (date>100){
+                            info = "周"+(date-100)+","+ks+":00~"+js+":00";
+                        }else {
+                            info = date+"号,"+ks+":00~"+js+":00";
+                        }
+                    %>
+                    <input style="width:100%;text-align: center;color: red" type="text" value="<%=info%>" name="date" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td  class="c1" align="left"><h2 class="fs-subtitle-1">咨询师:</h2></td>
+                <td class="c2" >
+                    <%
+                        String zxsName = request.getParameter("zxsName");
+                    %>
+                    <input style="width:100%;text-align: center;color: red" type="text" value="<%=zxsName%>" name="zxsName" readonly>
+                </td>
+            </tr>
             <tr>
                 <td class="c1" align="left"><h2 class="fs-subtitle-1">咨询类别:</h2></td>
                 <td class="c2" >
@@ -115,7 +145,7 @@
             <tr>
                 <td class="c1"  align="left"><h2 class="fs-subtitle-1">请具体描述求助的原因和问题，以及你期望达到的咨询效果:</h2></td>
                 <td class="c2" >
-                    <textarea style="width: 100%;height: 100px;overflow: scroll" maxlength="500" name="qzyy" placeholder="原因和问题"></textarea>
+                    <textarea required style="width: 100%;height: 100px;overflow: scroll" maxlength="500" name="qzyy" placeholder="原因和问题"></textarea>
                 </td>
             </tr>
             <tr>
@@ -160,7 +190,7 @@
             <tr>
                 <td  class="c1" align="left"><h2 class="fs-subtitle-1">姓名:</h2></td>
                 <td class="c2" >
-                    <input type="text" maxlength="30" name="customerName" placeholder="客户姓名" />
+                    <input type="text" maxlength="30" name="customerName" placeholder="您的姓名" required/>
                 </td>
             </tr>
             <tr>
@@ -182,43 +212,43 @@
             <tr>
                 <td class="c1"  align="left"><h2 class="fs-subtitle-1">电话:</h2></td>
                 <td class="c2" >
-                    <input type="tel" maxlength="20" name="customerTel" placeholder="客户电话">
+                    <input type="tel" maxlength="20" name="customerTel" placeholder="您的电话" required>
                 </td>
             </tr>
             <tr>
                 <td  class="c1" align="left"><h2 class="fs-subtitle-1">年龄:</h2></td>
                 <td class="c2" >
-                    <input type="number" maxlength="20" name="age" placeholder="年龄">
+                    <input type="number" maxlength="20" name="age" placeholder="年龄" required>
                 </td>
             </tr>
             <tr>
                 <td  class="c1" align="left"><h2 class="fs-subtitle-1">居住城市:</h2></td>
                 <td class="c2" >
-                    <input type="text" maxlength="20" name="location" placeholder="客户居住城市">
+                    <input type="text" maxlength="20" name="location" placeholder="您居住城市" required>
                 </td>
             </tr>
             <tr>
                 <td  class="c1" align="left"><h2 class="fs-subtitle-1">学历:</h2></td>
                 <td class="c2" >
-                    <input type="text" name="education" maxlength="40" placeholder="客户学历">
+                    <input type="text" name="education" maxlength="40" placeholder="您的学历" required>
                 </td>
             </tr>
             <tr>
                 <td  class="c1" align="left"><h2 class="fs-subtitle-1">从事行业:</h2></td>
                 <td class="c2" >
-                    <input type="text" name="job" maxlength="40" placeholder="工作">
+                    <input type="text" name="job" maxlength="40" placeholder="工作" required>
                 </td>
             </tr>
             <tr>
                 <td  class="c1" align="left"><h2 class="fs-subtitle-1">收入:</h2></td>
                 <td class="c2" >
-                    <input type="text" name="income" maxlength="40" placeholder="收入">
+                    <input type="text" name="income" maxlength="40" placeholder="收入" required>
                 </td>
             </tr>
             <tr>
                 <td class="c1"  align="left"><h2 class="fs-subtitle-1">婚姻状态:</h2></td>
                 <td class="c2" >
-                    <input type="text" name="marriage" maxlength="40" placeholder="婚姻状态">
+                    <input type="text" name="marriage" maxlength="40" placeholder="婚姻状态" required>
                 </td>
             </tr>
             <tr>
@@ -236,18 +266,13 @@
                 <td  class="c1" align="left"><h2 class="fs-subtitle-1">紧急联系人:</h2></td>
                 <td class="c2" >
                     <nobr>
-                        <input type="text" style="width: 33%" name="relationship" maxlength="40" placeholder="关系">
-                        <input type="text" style="width: 33%" name="relationship-name" maxlength="40" placeholder="姓名">
-                        <input type="tel" style="width: 33%" name="relationship-tel" maxlength="40" placeholder="电话">
+                        <input type="text" style="width: 33%" name="relationship" maxlength="40" placeholder="关系" required>
+                        <input type="text" style="width: 33%" name="relationship-name" maxlength="40" placeholder="姓名" required>
+                        <input type="tel" style="width: 33%" name="relationship-tel" maxlength="40" placeholder="电话" required>
                     </nobr>
                 </td>
             </tr>
-            <tr>
-                <td  class="c1" align="left"><h2 class="fs-subtitle-1">登记时间:</h2></td>
-                <td class="c2" >
-                    <input style="width:50%;float:left;text-align: center;color: red" type="date" name="date">
-                </td>
-            </tr>
+
         </table>
         <input type="submit" name="submit" class="action-button" value="提交" onclick="check()"/>
         <a href="home_menu.html">
@@ -264,7 +289,7 @@
 </body>
 <script>
     function check(){
-        var f = confirm("请确认信息无误！")
+        var f = confirm("请确认信息无误！");
         if (f===true){
             $('form').unbind('submit');
             $('form').submit();

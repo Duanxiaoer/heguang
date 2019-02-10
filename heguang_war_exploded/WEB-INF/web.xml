@@ -28,7 +28,7 @@
         <servlet-name>addService</servlet-name>
         <servlet-class>heguang.org.cn.addService</servlet-class>
     </servlet>
-    
+
     <servlet-mapping>
         <servlet-name>Servlet</servlet-name>
         <url-pattern>/Servlet</url-pattern>

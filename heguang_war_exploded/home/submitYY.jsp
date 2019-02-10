@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.io.PrintWriter" %><%--
   Created by IntelliJ IDEA.
   User: duanqifeng
   Date: 2019/1/22
@@ -15,6 +15,8 @@
     request.setCharacterEncoding("UTF-8");
     response.setCharacterEncoding("UTF-8");
 
+    PrintWriter writer = response.getWriter();
+
     String aname = request.getParameter("aname");
     String aemail = request.getParameter("aemail");
     String adate = request.getParameter("adate");
@@ -22,6 +24,8 @@
     String amessage = request.getParameter("amessage");
 
     System.out.println(adate);
+
+    writer.println("<script>window.location='../admin/zxdj.jsp'</script>");
 %>
 </body>
 </html>

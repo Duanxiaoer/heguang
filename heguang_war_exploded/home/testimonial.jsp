@@ -637,3 +637,67 @@
 </body>
 
 </html>
+
+
+<%--"<table>" +--%>
+<%--"   <tr>" +--%>
+	<%--"       <td style='text-align: center'><a  id='time0' style='color: " + color + "'>0:00</a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='time1' style='color: " + color + "'>1:00</a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='time2' style='color: " + color + "'>2:00</a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='time3' style='color: " + color + "'>3:00</a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='time4' style='color: " + color + "'>4:00</a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='time5' style='color: " + color + "'>5:00</a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='time6' style='color: " + color + "'>6:00</a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='time7' style='color: " + color + "'>7:00</a></td>" +--%>
+	<%--"   </tr>" +--%>
+<%--"   <tr>" +--%>
+	<%--"       <td style='text-align: center'><a  id='info0' style='color: " + color + "'></a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='info1' style='color: " + color + "'></a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='info2' style='color: " + color + "'></a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='info3' style='color: " + color + "'></a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='info4' style='color: " + color + "'></a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='info5' style='color: " + color + "'></a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='info6' style='color: " + color + "'></a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='info7' style='color: " + color + "'></a></td>" +--%>
+	<%--"   </tr>" +--%>
+<%--"   <tr>" +--%>
+	<%--"       <td style='text-align: center'><a  id='time8' style='color: " + color + "'>8:00</a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='time9' style='color: " + color + "'>9:00</a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='time10' style='color: " + color + "'>10:00</a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='time11' style='color: " + color + "'>11:00</a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='time12' style='color: " + color + "'>12:00</a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='time13' style='color: " + color + "'>13:00</a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='time14' style='color: " + color + "'>14:00</a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='time15' style='color: " + color + "'>15:00</a></td>" +--%>
+	<%--"   </tr>" +--%>
+<%--"   <tr>" +--%>
+	<%--"       <td style='text-align: center'><a  id='info8' style='color: " + color + "'></a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='info9' style='color: " + color + "'></a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='info10' style='color: " + color + "'></a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='info11' style='color: " + color + "'></a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='info12' style='color: " + color + "'></a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='info13' style='color: " + color + "'></a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='info14' style='color: " + color + "'></a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='info15' style='color: " + color + "'></a></td>" +--%>
+	<%--"   </tr>" +--%>
+<%--"   <tr>" +--%>
+	<%--"       <td style='text-align: center'><a  id='time16' style='color: " + color + "'>16:00</a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='time17' style='color: " + color + "'>17:00</a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='time18' style='color: " + color + "'>18:00</a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='time19' style='color: " + color + "'>19:00</a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='time20' style='color: " + color + "'>20:00</a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='time21' style='color: " + color + "'>21:00</a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='time22' style='color: " + color + "'>22:00</a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='time23' style='color: " + color + "'>23:00</a></td>" +--%>
+	<%--"   </tr>" +--%>
+<%--"   <tr>" +--%>
+	<%--"       <td style='text-align: center'><a  id='info16' style='color: " + color + "'></a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='info17' style='color: " + color + "'></a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='info18' style='color: " + color + "'></a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='info19' style='color: " + color + "'></a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='info20' style='color: " + color + "'></a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='info21' style='color: " + color + "'></a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='info22' style='color: " + color + "'></a></td>" +--%>
+	<%--"       <td style='text-align: center'><a  id='info23' style='color: " + color + "'></a></td>" +--%>
+	<%--"   </tr>" +--%>
+<%--"</table>";--%>

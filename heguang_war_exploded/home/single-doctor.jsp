@@ -299,7 +299,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#"><span class="lnr lnr-home"></span></a></li>
                     <li class="breadcrumb-item">Pages</li>
-                    <li class="breadcrumb-item active">Single Doctor</li>
+                    <li class="breadcrumb-item active">咨询师主页</li>
                 </ol>
             </div>
         </div>
@@ -426,10 +426,7 @@
                                 </tr>
                             </table>
                             <br>
-                            <div style="overflow: scroll">
-                                <table id="alltime">
-
-                                </table>
+                            <div id="alltime">
                             </div>
                             <div id="sparetime">
                             </div>
@@ -495,12 +492,8 @@
                                            placeholder="您的联系电话" required="required" type="text">
                                 </div>
                                 <div class="form-group col-lg-12">
-                                    <input type="date"  class="form-control" name="adate"
-                                           placeholder="点击右边日历图标">
-                                </div>
-                                <div class="form-group col-lg-12">
                                     <textarea rows="6" name="amessage" class="form-control" id="adescription"
-                                              placeholder="您的信息" required="required"></textarea>
+                                              placeholder="咨询时间，如'每周三下午3点到5点（前提是咨询师开放该时间段）'" required="required"></textarea>
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <input type="submit" value="提交" class="btn btn-lg btn-app-form">
@@ -730,71 +723,6 @@
             tip = tip + "号：";
         }
 
-        var alltime = document.getElementById("alltime");
-        var color = "red";
-        alltime.innerHTML =
-            "<table>" +
-            "   <tr>" +
-            "       <td style='text-align: center'><a  id='time0' style='color: " + color + "'>0:00</a></td>" +
-            "       <td style='text-align: center'><a  id='time1' style='color: " + color + "'>1:00</a></td>" +
-            "       <td style='text-align: center'><a  id='time2' style='color: " + color + "'>2:00</a></td>" +
-            "       <td style='text-align: center'><a  id='time3' style='color: " + color + "'>3:00</a></td>" +
-            "       <td style='text-align: center'><a  id='time4' style='color: " + color + "'>4:00</a></td>" +
-            "       <td style='text-align: center'><a  id='time5' style='color: " + color + "'>5:00</a></td>" +
-            "       <td style='text-align: center'><a  id='time6' style='color: " + color + "'>6:00</a></td>" +
-            "       <td style='text-align: center'><a  id='time7' style='color: " + color + "'>7:00</a></td>" +
-            "   </tr>" +
-            "   <tr>" +
-            "       <td style='text-align: center'><a  id='info0' style='color: " + color + "'></a></td>" +
-            "       <td style='text-align: center'><a  id='info1' style='color: " + color + "'></a></td>" +
-            "       <td style='text-align: center'><a  id='info2' style='color: " + color + "'></a></td>" +
-            "       <td style='text-align: center'><a  id='info3' style='color: " + color + "'></a></td>" +
-            "       <td style='text-align: center'><a  id='info4' style='color: " + color + "'></a></td>" +
-            "       <td style='text-align: center'><a  id='info5' style='color: " + color + "'></a></td>" +
-            "       <td style='text-align: center'><a  id='info6' style='color: " + color + "'></a></td>" +
-            "       <td style='text-align: center'><a  id='info7' style='color: " + color + "'></a></td>" +
-            "   </tr>" +
-            "   <tr>" +
-            "       <td style='text-align: center'><a  id='time8' style='color: " + color + "'>8:00</a></td>" +
-            "       <td style='text-align: center'><a  id='time9' style='color: " + color + "'>9:00</a></td>" +
-            "       <td style='text-align: center'><a  id='time10' style='color: " + color + "'>10:00</a></td>" +
-            "       <td style='text-align: center'><a  id='time11' style='color: " + color + "'>11:00</a></td>" +
-            "       <td style='text-align: center'><a  id='time12' style='color: " + color + "'>12:00</a></td>" +
-            "       <td style='text-align: center'><a  id='time13' style='color: " + color + "'>13:00</a></td>" +
-            "       <td style='text-align: center'><a  id='time14' style='color: " + color + "'>14:00</a></td>" +
-            "       <td style='text-align: center'><a  id='time15' style='color: " + color + "'>15:00</a></td>" +
-            "   </tr>" +
-            "   <tr>" +
-            "       <td style='text-align: center'><a  id='info8' style='color: " + color + "'></a></td>" +
-            "       <td style='text-align: center'><a  id='info9' style='color: " + color + "'></a></td>" +
-            "       <td style='text-align: center'><a  id='info10' style='color: " + color + "'></a></td>" +
-            "       <td style='text-align: center'><a  id='info11' style='color: " + color + "'></a></td>" +
-            "       <td style='text-align: center'><a  id='info12' style='color: " + color + "'></a></td>" +
-            "       <td style='text-align: center'><a  id='info13' style='color: " + color + "'></a></td>" +
-            "       <td style='text-align: center'><a  id='info14' style='color: " + color + "'></a></td>" +
-            "       <td style='text-align: center'><a  id='info15' style='color: " + color + "'></a></td>" +
-            "   </tr>" +
-            "   <tr>" +
-            "       <td style='text-align: center'><a  id='time16' style='color: " + color + "'>16:00</a></td>" +
-            "       <td style='text-align: center'><a  id='time17' style='color: " + color + "'>17:00</a></td>" +
-            "       <td style='text-align: center'><a  id='time18' style='color: " + color + "'>18:00</a></td>" +
-            "       <td style='text-align: center'><a  id='time19' style='color: " + color + "'>19:00</a></td>" +
-            "       <td style='text-align: center'><a  id='time20' style='color: " + color + "'>20:00</a></td>" +
-            "       <td style='text-align: center'><a  id='time21' style='color: " + color + "'>21:00</a></td>" +
-            "       <td style='text-align: center'><a  id='time22' style='color: " + color + "'>22:00</a></td>" +
-            "       <td style='text-align: center'><a  id='time23' style='color: " + color + "'>23:00</a></td>" +
-            "   </tr>" +
-            "   <tr>" +
-            "       <td style='text-align: center'><a  id='info16' style='color: " + color + "'></a></td>" +
-            "       <td style='text-align: center'><a  id='info17' style='color: " + color + "'></a></td>" +
-            "       <td style='text-align: center'><a  id='info18' style='color: " + color + "'></a></td>" +
-            "       <td style='text-align: center'><a  id='info19' style='color: " + color + "'></a></td>" +
-            "       <td style='text-align: center'><a  id='info20' style='color: " + color + "'></a></td>" +
-            "       <td style='text-align: center'><a  id='info21' style='color: " + color + "'></a></td>" +
-            "       <td style='text-align: center'><a  id='info22' style='color: " + color + "'></a></td>" +
-            "       <td style='text-align: center'><a  id='info23' style='color: " + color + "'></a></td>" +
-            "   </tr>" +
-            "</table>";
         querySparetime(date,obj);//加上信息
     }
 
@@ -834,21 +762,14 @@
                     }
                     querySparetimeXQ(xq);
                 }else {
+                    var alltime = document.getElementById("alltime");
+                    alltime.innerHTML = "";
+
                     for (var i=0;i<result.length;++i){
                         var ks = parseInt(result[i].ks);
                         var js = parseInt(result[i].js);
-
-                        while (ks <= js){
-                            var kstime = document.getElementById("time"+ks);
-                            var ksinfo = document.getElementById("info"+ks);
-                            if (result[i].bz !== "") {
-                                ksinfo.innerHTML = "已满";
-                            }else {
-                                ksinfo.innerHTML = result[i].fs;
-                                kstime.setAttribute("style","text-align: center;color:green;");
-                                ksinfo.setAttribute("style","text-align: center;color:green;");
-                            }
-                            ks = ks+1;
+                        if (result[i].bz === "") {
+                            alltime.innerHTML = "<input type='button' style='background-color: greenyellow' value='"+ks+":00-"+js+":00,"+result[i].fs+"' onclick='gotoYY("+date+","+ks+","+js+")' >";
                         }
                     }
                 }
@@ -864,24 +785,22 @@
             url: "/querySparetime",
             data: {date: date,email:email},
             success: function (result) {
+                var alltime = document.getElementById("alltime");
+                alltime.innerHTML = "";
+
                 for (var i=0;i<result.length;++i){
                     var ks = parseInt(result[i].ks);
                     var js = parseInt(result[i].js);
-                    while (ks <= js){
-                        var kstime = document.getElementById("time"+ks);
-                        var ksinfo = document.getElementById("info"+ks);
-                        if (result[i].bz !== "") {
-                            ksinfo.innerHTML = "已满";
-                        }else {
-                            ksinfo.innerHTML = result[i].fs;
-                            kstime.setAttribute("style","text-align: center;color:green;");
-                            ksinfo.setAttribute("style","text-align: center;color:green;");
-                        }
-                        ks = ks+1;
+                    if (result[i].bz === "") {
+                        alltime.innerHTML = "<input type='button' style='background-color: greenyellow' value='"+ks+":00-"+js+":00,"+result[i].fs+"' onclick='gotoYY("+date+","+ks+","+js+")' >";
                     }
                 }
             }
         })
+    }
+
+    function gotoYY(date,ks,js) {
+        window.location = "../admin/zxdj.jsp?date="+date+"&ks="+ks+"&js="+js+"&zxsName=<%=zxsName%>";
     }
 
 </script>

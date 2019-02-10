@@ -388,8 +388,6 @@
 
                                 //**连接数据库**
                                 try {
-                                    DB db = new DB();
-                                    db.connectToDB();
                                     if (!keywords.equals("")) {
                                         rs = db.likeQueryZXDJ("cname",keywords);
                                     } else {
@@ -466,7 +464,7 @@
 
                     <div style="padding-right: 20px;padding-left: 20px">
                         <div style="float: left;width: 20px">
-                            <a href="zxdj.html"><input style="color: #ff4828" type="submit" value="添加记录"
+                            <a href="zxdj.jsp"><input style="color: #ff4828" type="submit" value="添加记录"
                                                       class="btn btn-primary"></a>
                         </div>
                         <div style="float: right">

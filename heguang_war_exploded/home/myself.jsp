@@ -1,4 +1,5 @@
-<%@ page import="heguang.org.cn.DB" %><%--
+<%@ page import="heguang.org.cn.DB" %>
+<%@ page import="java.sql.ResultSet" %><%--
   Created by IntelliJ IDEA.
   User: duanqifeng
   Date: 2019/1/13
@@ -34,6 +35,22 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- Responsive  CSS -->
     <link rel="stylesheet" href="assets/css/responsive.css">
+    <style>
+        table {
+            border-style: solid;
+            width: 100%;
+        }
+
+        th{
+            text-align: center;
+            border-style: solid;
+        }
+
+        tr td {
+            border-style: solid;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -263,14 +280,14 @@
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12 col-12">
                 <div class="single-page-title">
-                    <h2>404 Page</h2>
+                    <h2>我的主页</h2>
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-12">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#"><span class="lnr lnr-home"></span></a></li>
                     <li class="breadcrumb-item">Pages</li>
-                    <li class="breadcrumb-item active">Error</li>
+                    <li class="breadcrumb-item active">我的主页</li>
                 </ol>
             </div>
         </div>
@@ -285,130 +302,66 @@
     <div class="auto-container">
         <div class="error-page-top">
             <div class="row">
-                <div class="col-lg-8 mx-auto text-center">
-                    <h2>Oops!</h2>
-                    <span>404</span>
-                    <p>Sorry, but nothing matched your search terms. Please try again with some different keywords.</p>
-                    <div class="error-search-box wow fadeInDown">
-                        <form>
-                            <div class="row">
-                                <div class="form-group col-lg-10 col-md-10 col-12 p-0">
-                                    <input class="form-control" name="searcher" placeholder="Search again here..." type="text">
-                                </div>
-                                <div class="form-group col-lg-2 col-md-2 col-12 p-0">
-                                    <button type="submit" class="btn err-se-btn">SEARCH</button>
-                                </div>
-                            </div>
-                        </form>
+                <div style="width: 45%;height: 400px;margin:2%;padding: 5px;">
+                    <h5>咨询记录</h5>
+                    <div style="width: 100%;height: 300px;margin:2%;overflow: scroll;border-style: solid">
+                        <table>
+                            <tr>
+                                <th>时间</th>
+                                <th>咨询师</th>
+                                <th>费用</th>
+                                <th>结余</th>
+                            </tr>
+                            <%
+                                ResultSet resultSetZX = db.queryZXFY("lfz",session.getAttribute("email").toString());
+
+                                try {
+
+                                    while (resultSetZX.next()){
+                                %>
+                                <tr>
+                                    <td><%=resultSetZX.getString("sj")%></td>
+                                    <td><%=resultSetZX.getString("zxs")%></td>
+                                    <td><%=resultSetZX.getString("fy")%></td>
+                                    <td><%=resultSetZX.getString("jy")%></td>
+                                </tr>
+                                <%
+                                        }
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
+                            %>
+                        </table>
                     </div>
                 </div>
+                <div style="width: 45%;height: 400px;margin:2%;padding: 5px">
+                    <h5>消费记录</h5>
+                    <div style="width: 100%;height: 300px;margin:2%;overflow: scroll;border-style: solid">
+                        <table>
+                            <tr>
+                                <th>时间</th>
+                                <th>消费事项</th>
+                                <th>金额</th>
+                                <th>结余</th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 2%;float: left">
+                <%
+                int balance = db.queryBalance(session.getAttribute("email").toString());
+                %>
+                账户余额<%=balance%>元
+            </div>
+            <div style="margin-top: 2%;float: right">
+                <a href="recharge.jsp" ><input type="button" class="btn-app-form" value="充值"></a>
             </div>
         </div>
     </div>
     <!--- END CONTAINER -->
 </section>
 <!-- END ERROR SECTION -->
-
-
-<!-- START ERROR SECTION TWO -->
-<section id="error2" class="section-padding bg-gray">
-    <div class="auto-container">
-        <div class="row">
-            <div class="col-lg-7 text-center mx-auto">
-                <div class="section-title">
-                    <h3>Most Useful Links</h3>
-                    <span class="line"></span>
-                    <p>It looks like nothing was found at this location. Maybe try one of the links below or a search?</p>
-                </div>
-            </div>
-            <!-- end section title -->
-        </div>
-        <div class="row">
-            <div class="col-lg-4 col-md-6 col-12 mb-lg-0 mb-md-4 mb-4">
-                <div class="sidebar-widget">
-                    <h5 class="widget-title">Recent Post</h5>
-                    <!-- end widget tittle-->
-                    <div class="servide-list">
-                        <ul>
-                            <li><a href="#"><i class="icofont icofont-rounded-right"></i> Digital Bariatric Surgery</a> </li>
-                            <li><a href="#"><i class="icofont icofont-rounded-right"></i> Obesity: A Growing Epidemic</a> </li>
-                            <li><a href="#"><i class="icofont icofont-rounded-right"></i> After Surgery Bed Rest</a> </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- end col -->
-            <div class="col-lg-4 col-md-6 col-12 mb-lg-0 mb-md-4 mb-4">
-                <div class="sidebar-widget">
-                    <h5 class="widget-title">Most Used Categories</h5>
-                    <!-- end widget tittle-->
-                    <div class="servide-list">
-                        <ul>
-                            <li><a href="#"><i class="icofont icofont-rounded-right"></i> Cancer Care (3)</a> </li>
-                            <li><a href="#"><i class="icofont icofont-rounded-right"></i> Health checks (8)</a> </li>
-                            <li><a href="#"><i class="icofont icofont-rounded-right"></i> Accident & Emergency (5)</a> </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- end col -->
-            <div class="col-lg-4 col-md-12 col-12">
-                <div class="sidebar-widget">
-                    <h5 class="widget-title">Useful Pages</h5>
-                    <!-- end widget tittle-->
-                    <div class="servide-list">
-                        <ul>
-                            <li><a href="#"><i class="icofont icofont-rounded-right"></i> Home Page</a> </li>
-                            <li><a href="#"><i class="icofont icofont-rounded-right"></i> About Cleveland</a> </li>
-                            <li><a href="#"><i class="icofont icofont-rounded-right"></i> Get Appointment</a> </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- end col -->
-        </div>
-    </div>
-    <!--- END CONTAINER -->
-</section>
-<!-- END ERROR SECTION TWO -->
-
-
-<!-- START CLIENT SECTION -->
-<div id="client" class="client-section bg-gray-2">
-    <div class="container">
-        <div class="row">
-            <div class="client-slider owl-carousel owl-theme">
-                <div class="single-client">
-                    <a href="#"><img class="img-fluid" src="assets/img/clients/1.png" alt=""></a>
-                </div>
-                <!-- end single client -->
-                <div class="single-client">
-                    <a href="#"><img class="img-fluid" src="assets/img/clients/2.png" alt=""></a>
-                </div>
-                <!-- end single client -->
-                <div class="single-client">
-                    <a href="#"><img class="img-fluid" src="assets/img/clients/3.png" alt=""></a>
-                </div>
-                <!-- end single client -->
-                <div class="single-client">
-                    <a href="#"><img class="img-fluid" src="assets/img/clients/4.png" alt=""></a>
-                </div>
-                <!-- end single client -->
-                <div class="single-client">
-                    <a href="#"><img class="img-fluid" src="assets/img/clients/1.png" alt=""></a>
-                </div>
-                <!-- end single client -->
-                <div class="single-client">
-                    <a href="#"><img class="img-fluid" src="assets/img/clients/2.png" alt=""></a>
-                </div>
-                <!-- end single client -->
-            </div>
-        </div>
-    </div>
-    <!--- END CONTAINER -->
-</div>
-<!-- END CLIENT SECTION -->
-
 
 <!-- START FOOTER -->
 <footer>

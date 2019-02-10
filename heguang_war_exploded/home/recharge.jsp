@@ -1,4 +1,5 @@
-<%@ page import="java.io.PrintWriter" %><%--
+<%@ page import="heguang.org.cn.DB" %>
+<%@ page import="java.sql.ResultSet" %><%--
   Created by IntelliJ IDEA.
   User: duanqifeng
   Date: 2019/1/13
@@ -6,42 +7,52 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
-    if (session.getAttribute("zxsName")==null){
-        PrintWriter writer = response.getWriter();
-        writer.print("<script>window.location = '../home/index.jsp'</script>");
-    }
-%>
-
 <html lang="zxx">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <link rel="shortcut icon" type="image/x-icon" href="../home/assets/img/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico" />
     <title></title>
     <!-- Bootstrap core CSS -->
-    <link href="../home/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Font  -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,400i,500,500i,600,700|Raleway:400,400i,500i,600,700" rel="stylesheet">
     <!-- flaticon icon -->
-    <link rel="stylesheet" href="../home/assets/fonts/icon-font.min.css">
+    <link rel="stylesheet" href="assets/fonts/icon-font.min.css">
     <!-- icofont icon -->
-    <link rel="stylesheet" href="../home/assets/fonts/icofont.css">
+    <link rel="stylesheet" href="assets/fonts/icofont.css">
     <!--- meanmenu Css-->
-    <link rel="stylesheet" href="../home/assets/css/meanmenu.min.css" media="all" />
+    <link rel="stylesheet" href="assets/css/meanmenu.min.css" media="all" />
     <!-- animate CSS -->
-    <link rel="stylesheet" href="../home/assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
     <!--- owl carousel Css-->
-    <link rel="stylesheet" href="../home/assets/owlcarousel/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../home/assets/owlcarousel/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="assets/owlcarousel/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/owlcarousel/css/owl.theme.default.min.css">
     <!-- venobox -->
-    <link rel="stylesheet" href="../home/assets/venobox/css/venobox.css" />
+    <link rel="stylesheet" href="assets/venobox/css/venobox.css" />
     <!-- Style CSS -->
-    <link rel="stylesheet" href="../home/assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <!-- Responsive  CSS -->
-    <link rel="stylesheet" href="../home/assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <style>
+        table {
+            border-style: solid;
+            width: 100%;
+        }
+
+        th{
+            text-align: center;
+            border-style: solid;
+        }
+
+        tr td {
+            border-style: solid;
+            text-align: center;
+        }
+    </style>
 </head>
+
 <body>
 
 <!-- START PRELOADER -->
@@ -49,6 +60,7 @@
     <div class="preloader-wrench"></div>
 </div>
 <!-- END PRELOADER -->
+
 
 <!-- START HEADER SECTION -->
 <header class="main-header header-1">
@@ -69,21 +81,37 @@
                     <div class="info-menu">
                         <ul>
                             <%
+
+                                DB db = new DB();
+                                db.connectToDB();
+
                                 String name = "游客";
-                                if (session.getAttribute("zxsName")!=null){
-                                    name = (String) session.getAttribute("zxsName");
+                                String email = "游客";
+                                if (session.getAttribute("name")!=null && session.getAttribute("email")!=null){
+                                    name = (String) session.getAttribute("name");
+                                    email = (String) session.getAttribute("email");
 
                             %>
-                            <li><a href="#"><%=name%></a></li>
-                            <li><a href="#">个人主页 </a></li>
-                            <li><a href="#">联系我们 </a></li>
+                            <li><a href="myself.jsp?email=<%=email%>"><%=name%></a></li>
+                            <li><a href="#footer">联系我们 </a></li>
                             <%
-                            }else{
+                                if (session.getAttribute("admin")!=null){
+
+                            %>
+                            <li><a href="../admin/home_menu.html">管理</a></li>
+                            <%
+
+                            }else if (session.getAttribute("zxsName")!=null){
+                            %>
+                            <li><a href="../zxs/zxs.jsp">管理</a></li>
+                            <%
+                                }
+
+                            } else{
                             %>
                             <li><a href="../login/login.html">登录</a></li>
                             <li><a href="../login/signup.html">注册</a></li>
-                            <li><a href="#">预约 </a></li>
-                            <li><a href="#">联系我们 </a></li>
+                            <li><a href="#footer">联系我们 </a></li>
                             <%
                                 }
                             %>
@@ -103,8 +131,8 @@
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-7 mx-md-auto mx-sm-auto mx-auto pl-0">
                     <div class="logo">
-                        <a href="../home/index.jsp">
-                            <img class="img-fluid" src="../home/assets/img/logo.png" alt="">
+                        <a href="index.jsp">
+                            <img class="img-fluid" src="assets/img/logo.png" alt="">
                         </a>
                     </div>
                 </div>
@@ -121,7 +149,7 @@
                         <h6>Mon - Sun : 09:00 - 18:00</h6>
                     </div>
                     <div class="header-info-box">
-                        <a class="header-quote-btn" href="#">立即预约 <i class="icofont icofont-caret-right"></i></a>
+                        <a class="header-quote-btn" href="doctors.jsp">立即预约 <i class="icofont icofont-caret-right"></i></a>
                     </div>
                 </div>
                 <!-- end col -->
@@ -138,36 +166,27 @@
                     <div class="col-lg-9 d-lg-block d-md-none d-sm-none d-none ">
                         <nav class="navbar navbar-expand-lg justify-content-left">
                             <ul class="navbar-nav">
-                                <li><a href="../home/index.jsp" class="nav-link">主页</a></li>
-                                <li class="dropdown"><a href="../home/about.jsp" class="nav-link">关于我们</a>
+                                <li><a href="isLogged.jsp" class="nav-link">主页</a></li>
+                                <li class="dropdown"><a href="about.jsp" class="nav-link">关于我们</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="../home/about.jsp">关于和光</a></li>
-                                        <li><a href="../home/doctors.jsp">团队</a></li>
-                                        <li><a href="../home/single-doctor.jsp">医师列表</a></li>
+                                        <li><a href="about.jsp">关于和光</a></li>
+                                        <li><a href="doctors.jsp">团队</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a href="../home/services.jsp" class="nav-link">临床训练</a>
+                                <li class="dropdown"><a href="services.jsp" class="nav-link">业务范围</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="../home/single-service.jsp">Accident & Emergency</a></li>
-                                        <li><a href="../home/single-service.jsp">Health checks</a></li>
-                                        <li><a href="../home/single-service.jsp">Home Care</a></li>
-                                        <li><a href="../home/single-service.jsp">Diabetes & Endocrinology</a></li>
+                                        <li><a href="#services-xlfw">临床心理服务</a></li>
+                                        <li><a href="#services-train">临床心理训练</a></li>
                                     </ul>
                                 </li>
-
                                 <li class="dropdown"><a href="#" class="nav-link">服务</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="../home/appointment.jsp">预约</a></li>
-                                        <li><a href="../home/testimonial.jsp">测试</a></li>
-                                        <li><a href="../home/new-patient.jsp">就诊</a></li>
-                                        <li><a href="../home/faq.jsp">疑问</a></li>
-                                        <li><a href="../home/reports.jsp">就诊报告</a></li>
-                                        <li><a href="../home/404.jsp">404 Page</a></li>
+                                        <li><a href="appointment.jsp">预约</a></li>
+                                        <li><a href="testimonial.jsp">测试</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="../home/news.jsp" class="nav-link">风采</a></li>
-                                <li><a href="../home/blog.jsp" class="nav-link">新闻</a></li>
-                                <li><a href="../home/contact.jsp" class="nav-link">加入我们</a></li>
+                                <li><a href="news.jsp" class="nav-link">新闻</a></li>
+                                <li><a href="contact.jsp" class="nav-link">加入我们</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -176,10 +195,8 @@
                             <ul class="navbar-nav">
                                 <li class="dropdown quick-search"><a href="#" class="nav-link">我想</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#"><i class="icofont icofont-doctor-alt"></i> 找位医师</a></li>
-                                        <li><a href="#"><i class="icofont icofont-ui-calendar"></i> 预约医师</a></li>
+                                        <li><a href="doctors.jsp"><i class="icofont icofont-doctor-alt"></i> 找位医师</a></li>
                                         <li><a href="#"><i class="icofont icofont-medical-sign"></i> 预定测试</a></li>
-                                        <li><a href="#"><i class="icofont icofont-prescription"></i> 申请报告 </a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -197,48 +214,48 @@
                 <div class="mobile-menu">
                     <nav id="dropdown">
                         <ul class="navbar-nav">
-                            <li><a href="../home/index.jsp">主页</a>
+                            <li><a href="index.jsp">主页</a>
                                 <ul>
-                                    <li><a href="../home/index.jsp">Home 1</a></li>
-                                    <li><a href="../home/map.html">Home 2</a></li>
-                                    <li><a href="../home/index-3.html">Home 3</a></li>
-                                    <li><a href="../home/index-4.html">Home 4</a></li>
+                                    <li><a href="index.jsp">Home 1</a></li>
+                                    <li><a href="map.html">Home 2</a></li>
+                                    <li><a href="index-3.html">Home 3</a></li>
+                                    <li><a href="index-4.html">Home 4</a></li>
                                 </ul>
                             </li>
-                            <li><a href="../home/about.jsp">关于我们</a>
+                            <li><a href="about.jsp">关于我们</a>
                                 <ul>
-                                    <li><a href="../home/about.jsp">关于和光</a></li>
-                                    <li><a href="../home/doctors.jsp">团队</a></li>
-                                    <li><a href="../home/single-doctor.jsp">医师列表</a></li>
+                                    <li><a href="about.jsp">关于和光</a></li>
+                                    <li><a href="doctors.jsp">团队</a></li>
+                                    <li><a href="single-doctor.jsp">医师列表</a></li>
                                 </ul>
                             </li>
-                            <li><a href="../home/services.jsp">业务范围</a>
+                            <li><a href="services.jsp">业务范围</a>
                                 <ul>
-                                    <li><a href="../home/services.jsp">Our All Services</a></li>
-                                    <li><a href="../home/single-service.jsp">Accident & Emergency</a></li>
-                                    <li><a href="../home/single-service.jsp">Health checks</a></li>
-                                    <li><a href="../home/single-service.jsp">Home Care</a></li>
-                                    <li><a href="../home/single-service.jsp">Diabetes & Endocrinology</a></li>
+                                    <li><a href="services.jsp">Our All Services</a></li>
+                                    <li><a href="single-service.jsp">Accident & Emergency</a></li>
+                                    <li><a href="single-service.jsp">Health checks</a></li>
+                                    <li><a href="single-service.jsp">Home Care</a></li>
+                                    <li><a href="single-service.jsp">Diabetes & Endocrinology</a></li>
                                 </ul>
                             </li>
-                            <li><a href="../home/news.jsp">风采</a></li>
+                            <li><a href="news.jsp">风采</a></li>
                             <li><a href="#">服务</a>
                                 <ul>
-                                    <li><a href="../home/appointment.jsp">预约</a></li>
-                                    <li><a href="../home/testimonial.jsp">测试</a></li>
-                                    <li><a href="../home/new-patient.jsp">就诊</a></li>
-                                    <li><a href="../home/faq.jsp">疑问</a></li>
-                                    <li><a href="../home/reports.jsp">就诊报告</a></li>
-                                    <li><a href="../home/404.jsp">404 Page</a></li>
+                                    <li><a href="appointment.jsp">预约</a></li>
+                                    <li><a href="testimonial.jsp">测试</a></li>
+                                    <li><a href="new-patient.jsp">就诊</a></li>
+                                    <li><a href="faq.jsp">疑问</a></li>
+                                    <li><a href="reports.jsp">就诊报告</a></li>
+                                    <li><a href="404.jsp">404 Page</a></li>
                                 </ul>
                             </li>
-                            <li><a href="../home/blog.jsp">新闻</a>
+                            <li><a href="blog.jsp">新闻</a>
                                 <ul>
-                                    <li><a href="../home/blog.jsp">Blog</a></li>
-                                    <li><a href="../home/blog.jsp">Blog Single</a></li>
+                                    <li><a href="blog.jsp">Blog</a></li>
+                                    <li><a href="blog.jsp">Blog Single</a></li>
                                 </ul>
                             </li>
-                            <li><a href="../home/contact.jsp">联系我们</a></li>
+                            <li><a href="contact.jsp">联系我们</a></li>
                             <li><a href="#">我想</a>
                                 <ul>
                                     <li><a href="#"><i class="icofont icofont-doctor-alt"></i> 找位医师</a></li>
@@ -263,14 +280,14 @@
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12 col-12">
                 <div class="single-page-title">
-                    <h2>菜单</h2>
+                    <h2>订单信息</h2>
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-12">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#"><span class="lnr lnr-home"></span></a></li>
-                    <li class="breadcrumb-item">咨询师</li>
-                    <li class="breadcrumb-item active">菜单</li>
+                    <li class="breadcrumb-item">Pages</li>
+                    <li class="breadcrumb-item active">订单信息</li>
                 </ol>
             </div>
         </div>
@@ -279,43 +296,27 @@
 </section>
 <!-- END PAGE BANNER AND BREADCRUMBS -->
 
-<!-- START PAGE BANNER AND BREADCRUMBS -->
-<section class="single-page-title-area" data-background="assets/img/bg/heading.png">
 
-    <div style="width: 100%;height: 400px">
-
-        <div style="width: 100%;height: 30%">
-            <div style="float:left;width: 48%;height: 100px">
-                <input type="button" style="height:100%;width: 100%;background-color: #5bc0de;color: #122b40" class="action-button" value="编辑个人资料" onclick="window.location='zxs_bjzl.jsp'"/>
-            </div>
-            <div style="width: 48%;float: right;height: 100px">
-                <input type="button" style="height:100%;width:100%;background-color: #faf2cc;color: #761c19"  class="action-button" value="查看咨询记录" onclick="window.location='zxdj.jsp'" />
-            </div>
-        </div>
-        <br>
-        <br>
-        <div style="width: 100%;height: 30%">
-            <div style="width: 48%;float: left;height: 100px">
-                <input type="button" style="background-color: #ff8475;height: 100%;width: 100%;color: #3a5aff"  class="action-button" value="发布文章" onclick="window.location='ckgzjl.jsp'" />
-            </div>
-            <div style="float:right;width: 48%;height: 100px">
-                <input type="button" style="background-color: #f9ff4e;height: 100%;width: 100%;color: #5fff54"  class="action-button" value="设置咨询时间" onclick="window.location='ckdjjl.jsp'" />
-            </div>
-        </div>
-        <br>
-        <br>
-        <div style="width: 100%;height: 30%">
-            <div style="float:left;width: 48%;height: 100px">
-                <input type="button" style="background-color: #d4d4d4;height: 100%;width: 100%;color: #761c19"  class="action-button" value="更多功能。。。"  />
-            </div>
-        </div>
-        <br>
-
+<!-- START ERROR SECTION -->
+<section id="error" class="section-padding">
+    <div class="auto-container">
+        <form style="text-align: center" action="../alipay/alipay.trade.page.pay.jsp" method="post">
+            <span style="text-align: right;margin-right: 5px">订单号：</span><input style="text-align: center" type="number" value="<%=System.currentTimeMillis()%>" placeholder="订单号" name="WIDout_trade_no" readonly required>
+            <br>
+            <br>
+            <span style="text-align: right;margin-right: 5px">订单名称：</span><input style="text-align: center" type="text"  value="账户充值" placeholder="名称" name="WIDsubject" readonly required>
+            <br>
+            <br>
+            <span style="text-align: right;margin-right: 5px">商品描述：</span><input style="text-align: center" type="text" value="账户余额充值" placeholder="商品描述" name="WIDbody" required>
+            <br>
+            <br>
+            <input type="number"  placeholder="请输入充值金额" name="WIDtotal_amount" required>元
+            <input type="submit" class="btn-app-form" value="充值">
+        </form>
     </div>
+    <!--- END CONTAINER -->
 </section>
-<!-- END PAGE BANNER AND BREADCRUMBS -->
-
-
+<!-- END ERROR SECTION -->
 
 <!-- START FOOTER -->
 <footer>
@@ -334,10 +335,10 @@
                     </div>
                     <div class="footer-logo">
                         <a href="#">
-                            <img class="img-fluid" src="../home/assets/img/app-google.png" alt="">
+                            <img class="img-fluid" src="assets/img/app-google.png" alt="">
                         </a>
                         <a href="#">
-                            <img class="img-fluid" src="../home/assets/img/app-apple.png" alt="">
+                            <img class="img-fluid" src="assets/img/app-apple.png" alt="">
                         </a>
                     </div>
                 </div>
@@ -437,32 +438,32 @@
 
 
 <!-- Latest jQuery -->
-<script src="../home/assets/js/jquery-2.2.4.min.js"></script>
+<script src="assets/js/jquery-2.2.4.min.js"></script>
 <!-- popper js -->
-<script src="../home/assets/bootstrap/js/popper.min.js"></script>
+<script src="assets/bootstrap/js/popper.min.js"></script>
 <!-- Latest compiled and minified Bootstrap -->
-<script src="../home/assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
 <!-- meanmenu min js  -->
-<script src="../home/assets/js/jquery.meanmenu.min.js"></script>
+<script src="assets/js/jquery.meanmenu.min.js"></script>
 <!-- Sticky JS -->
-<script src="../home/assets/js/jquery.sticky.js"></script>
+<script src="assets/js/jquery.sticky.js"></script>
 <!-- gijgo js  -->
-<script src="../home/assets/js/gijgo.js"></script>
+<script src="assets/js/gijgo.js"></script>
 <!-- owl-carousel min js  -->
-<script src="../home/assets/owlcarousel/js/owl.carousel.min.js"></script>
+<script src="assets/owlcarousel/js/owl.carousel.min.js"></script>
 <!-- jquery mixitup js -->
-<script src="../home/assets/js/jquery.mixitup.min.js"></script>
+<script src="assets/js/jquery.mixitup.min.js"></script>
 <!-- jquery appear js  -->
-<script src="../home/assets/js/jquery.appear.js"></script>
+<script src="assets/js/jquery.appear.js"></script>
 <!-- countTo js -->
-<script src="../home/assets/js/jquery.inview.min.js"></script>
+<script src="assets/js/jquery.inview.min.js"></script>
 <!-- venobox js -->
-<script src="../home/assets/venobox/js/venobox.min.js"></script>
+<script src="assets/venobox/js/venobox.min.js"></script>
 <!-- scrolltopcontrol js -->
-<script src="../home/assets/js/scrolltopcontrol.js"></script>
+<script src="assets/js/scrolltopcontrol.js"></script>
 <!-- WOW - Reveal Animations When You Scroll -->
-<script src="../home/assets/js/wow.min.js"></script>
+<script src="assets/js/wow.min.js"></script>
 <!-- scripts js -->
-<script src="../home/assets/js/scripts.js"></script>
+<script src="assets/js/scripts.js"></script>
 </body>
 </html>
