@@ -51,7 +51,7 @@
 		String trade_no = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"),"UTF-8");
 	
 		//付款金额
-		int total_amount = Integer.parseInt(new String(request.getParameter("total_amount").getBytes("ISO-8859-1"),"UTF-8"));
+		int total_amount = Integer.parseInt(request.getParameter("total_amount"));
 
 		DB db = new DB();
 		db.connectToDB();
