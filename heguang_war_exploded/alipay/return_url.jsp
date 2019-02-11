@@ -49,18 +49,15 @@
 	
 		//支付宝交易号
 		String trade_no = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"),"UTF-8");
-	
-		//付款金额
 		int total_amount = (int) Float.parseFloat(request.getParameter("total_amount"));
 
+		//交易信息入库
 		DB db = new DB();
 		db.connectToDB();
 		db.insertAlipay(session.getAttribute("name").toString(),session.getAttribute("email").toString(),out_trade_no,trade_no,String.valueOf(total_amount));
 		db.updateYuE(session.getAttribute("email").toString(),total_amount);
 
-
-		out.print("<script>alert('"+session.getAttribute("email")+";"+total_amount+"')</script>");
-		out.println("trade_no:"+trade_no+"<br/>out_trade_no:"+out_trade_no+"<br/>total_amount:"+total_amount);
+		out.print("<script>alert('充值成功！');window.location = '../home/myself.jsp' </script>");
 	}else {
 		out.println("验签失败");
 	}
