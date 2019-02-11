@@ -57,7 +57,7 @@ CREATE TABLE `alipay_all` (
   `trade_no` varchar(70) DEFAULT NULL,
   `total_amount` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='和支付宝相关的所有记录';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='和支付宝相关的所有记录';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,6 +66,7 @@ CREATE TABLE `alipay_all` (
 
 LOCK TABLES `alipay_all` WRITE;
 /*!40000 ALTER TABLE `alipay_all` DISABLE KEYS */;
+INSERT INTO `alipay_all` VALUES (1,'qifeng duan','745298691@qq.com','1549853879585','2019021122001467350500713313','22');
 /*!40000 ALTER TABLE `alipay_all` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -208,7 +209,7 @@ CREATE TABLE `userinfo` (
 
 LOCK TABLES `userinfo` WRITE;
 /*!40000 ALTER TABLE `userinfo` DISABLE KEYS */;
-INSERT INTO `userinfo` VALUES ('745298691@qq.com','dqf009.','qifeng duan',0);
+INSERT INTO `userinfo` VALUES ('745298691@qq.com','dqf009.','qifeng duan',998199);
 /*!40000 ALTER TABLE `userinfo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -223,6 +224,7 @@ CREATE TABLE `zxdj` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date` varchar(50) DEFAULT NULL,
   `zxsName` varchar(50) DEFAULT NULL,
+  `totalPrice` int(11) DEFAULT NULL,
   `zxlb` varchar(50) DEFAULT NULL,
   `zxwt` varchar(100) DEFAULT NULL,
   `qzyy` varchar(500) DEFAULT NULL,
@@ -246,7 +248,7 @@ CREATE TABLE `zxdj` (
   `admin` varchar(50) DEFAULT NULL,
   `timestamp` mediumtext,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -255,7 +257,7 @@ CREATE TABLE `zxdj` (
 
 LOCK TABLES `zxdj` WRITE;
 /*!40000 ALTER TABLE `zxdj` DISABLE KEYS */;
-INSERT INTO `zxdj` VALUES (11,'周7,14:00~17:00','吴薇莉','成人咨询','无','d','没有','没有','没有','d','d','其他','13072810205','11','成都','d','dd','d','d','没有','十大','qifeng duan','13072810205','qifeng duan','1549448197267'),(12,'周7,14:00~17:00','吴薇莉','成人咨询','人际关系;婚恋情感','dd','没有','没有','没有','dd','qifeng duan','其他','13072810205','11','成都','dd','dd','dd','dd','没有','uhijok','qifeng duan','13072810205','qifeng duan','1549516981509'),(13,'周7,14:00~17:00','吴薇莉','成人咨询','人际关系;婚恋情感','dd','没有','没有','没有','dd','qifeng duan','其他','13072810205','11','成都','dd','dd','dd','dd','没有','uhijok','qifeng duan','13072810205','qifeng duan','1549517031045'),(14,'周7,14:00~17:00','吴薇莉','成人咨询','人际关系;婚恋情感','dd','没有','没有','没有','dd','qifeng duan','其他','13072810205','11','成都','dd','dd','dd','dd','没有','uhijok','qifeng duan','13072810205','qifeng duan','1549517066814');
+INSERT INTO `zxdj` VALUES (15,'周7 ，14:00~17:00','吴薇莉 ，200元/50分钟',600,'成人咨询','其他','1\r\n1','没有','没有','没有','1','1','其他','1','1','1','1','1','1','1','没有','1','1','1','qifeng duan','1549867405181'),(16,'周7 ，14:00~17:00','吴薇莉 ，200元/50分钟',600,'成人咨询','其他','1','没有','没有','没有','1','1','其他','1','1','1','1','1','1','1','没有','1','1','1','qifeng duan','1549868395347'),(17,'20号,6:00~12:00','吴薇莉 ，200元/50分钟',1200,'成人咨询','其他','1','没有','没有','没有','1','1','其他','1','1','1','1','1','1','1','没有','1','1','1','745298691@qq.com','1549869594892');
 /*!40000 ALTER TABLE `zxdj` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -475,4 +477,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-02-10 19:24:10
+-- Dump completed on 2019-02-11 16:28:54
