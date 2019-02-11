@@ -21,6 +21,7 @@
 
     String date = request.getParameter("date");
     String zxsName = request.getParameter("zxsName");
+    int totalPrice = Integer.parseInt(request.getParameter("totalPrice"));
 
     String zxlb = request.getParameter("zxlb");
     String[] zxwts = request.getParameterValues("zxwt");
@@ -59,16 +60,23 @@
         return;
     }
     HttpSession httpSession =request.getSession();
-    String svalue = (String) httpSession.getAttribute("name");
+    String userName = (String) httpSession.getAttribute("name");
+    String userEmail = (String) httpSession.getAttribute("email");
     boolean online = false;
-    if (svalue!=null){
+    if (userName !=null){
         online = true;
+        if (db.queryYuE(userEmail)<totalPrice){
+            writer.print("<script>alert('余额不足，请充值。。。');window.location = '../home/myself.jsp'</script>");
+        }
     }
     if (online){
         String kuaidiInfo = "\n 你已经登记成功";
 
-        db.insertZXDJ(date,zxsName,zxlb, zxwt, qzyy, sfjsgxl, sfjsgjs, sfzs, qita, customerName, sex, customerTel, age, location, education,  job,  income,  marriage
-                , children, relationship, relationship_name,  relationship_tel,svalue);
+        //用户余额扣除本次费用
+        db.updateYuE(userEmail,-totalPrice);
+        //预约记录写入总表
+        db.insertZXDJ(date,zxsName,totalPrice,zxlb, zxwt, qzyy, sfjsgxl, sfjsgjs, sfzs, qita, customerName, sex, customerTel, age, location, education,  job,  income,  marriage
+                , children, relationship, relationship_name,  relationship_tel, userEmail);
 
 //        SentEmail.sendEmail_kuaidi("scuxiaoer@126.com",kuaidiInfo);
         writer.print("<script>alert('登记成功！');window.location='../home/myself.jsp'</script>");

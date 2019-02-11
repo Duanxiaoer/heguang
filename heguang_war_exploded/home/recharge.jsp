@@ -1,5 +1,6 @@
 <%@ page import="heguang.org.cn.DB" %>
-<%@ page import="java.sql.ResultSet" %><%--
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.io.PrintWriter" %><%--
   Created by IntelliJ IDEA.
   User: duanqifeng
   Date: 2019/1/13
@@ -61,6 +62,12 @@
 </div>
 <!-- END PRELOADER -->
 
+<%
+    PrintWriter printWriter = response.getWriter();
+    if (session.getAttribute("email") == null){
+        printWriter.print("<script>alert('登录超时，请重新登录');window.location='../login/login.html'</script>");
+    }
+%>
 
 <!-- START HEADER SECTION -->
 <header class="main-header header-1">

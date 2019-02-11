@@ -1,5 +1,8 @@
 <%@ page import="heguang.org.cn.DB" %>
-<%@ page import="java.sql.ResultSet" %><%--
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.io.PrintWriter" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %><%--
   Created by IntelliJ IDEA.
   User: duanqifeng
   Date: 2019/1/13
@@ -61,6 +64,12 @@
 </div>
 <!-- END PRELOADER -->
 
+<%
+    PrintWriter printWriter = response.getWriter();
+    if (session.getAttribute("email") == null ){
+        printWriter.print("<script>alert('登录超时，请重新登录');window.location='../login/login.html'</script>");
+    }
+%>
 
 <!-- START HEADER SECTION -->
 <header class="main-header header-1">
@@ -309,21 +318,26 @@
                             <tr>
                                 <th>时间</th>
                                 <th>咨询师</th>
+                                <th>咨询时间</th>
                                 <th>费用</th>
-                                <th>结余</th>
                             </tr>
                             <%
-                                ResultSet resultSetZX = db.queryZXFY("lfz",session.getAttribute("email").toString());
+                                ResultSet resultSetZX = db.queryZXFY("admin",session.getAttribute("email").toString());
 
                                 try {
 
                                     while (resultSetZX.next()){
+                                        String dateString = "";
+                                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                        long lt = new Long(resultSetZX.getString("timestamp"));
+                                        Date date = new Date(lt);
+                                        dateString = simpleDateFormat.format(date);
                                 %>
                                 <tr>
-                                    <td><%=resultSetZX.getString("sj")%></td>
-                                    <td><%=resultSetZX.getString("zxs")%></td>
-                                    <td><%=resultSetZX.getString("fy")%></td>
-                                    <td><%=resultSetZX.getString("jy")%></td>
+                                    <td><%=dateString%></td>
+                                    <td><%=resultSetZX.getString("zxsName")%></td>
+                                    <td><%=resultSetZX.getString("date")%></td>
+                                    <td><%=resultSetZX.getString("totalPrice")%></td>
                                 </tr>
                                 <%
                                         }
@@ -335,15 +349,32 @@
                     </div>
                 </div>
                 <div style="width: 45%;height: 400px;margin:2%;padding: 5px">
-                    <h5>消费记录</h5>
+                    <h5>充值记录</h5>
                     <div style="width: 100%;height: 300px;margin:2%;overflow: scroll;border-style: solid">
                         <table>
                             <tr>
                                 <th>时间</th>
                                 <th>消费事项</th>
+                                <th>订单号</th>
                                 <th>金额</th>
-                                <th>结余</th>
                             </tr>
+                            <%
+                                ResultSet resultSetAli = db.queryAlipay("email",session.getAttribute("email").toString());
+                                try {
+                                    while (resultSetZX.next()){
+                            %>
+                            <tr>
+                                <td><%=resultSetAli.getString("trade_no").substring(0,7)%></td>
+                                <td><%="账户充值"%></td>
+                                <td><%=resultSetAli.getString("out_trade_no")%></td>
+                                <td><%=resultSetAli.getString("total_amount")%></td>
+                            </tr>
+                            <%
+                                    }
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
+                            %>
                         </table>
                     </div>
                 </div>

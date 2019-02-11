@@ -1,3 +1,6 @@
+<%@ page import="java.io.PrintWriter" %>
+<%@ page import="heguang.org.cn.DB" %>
+<%@ page import="java.sql.ResultSet" %>
 <html>
 <head>
     <%@ page contentType="text/html; charset=gb2312"%>
@@ -47,6 +50,16 @@
 </head>
 <body>
 <div style="display:none"></div>
+<%
+    PrintWriter printWriter = response.getWriter();
+    if (session.getAttribute("email") == null ){
+        printWriter.print("<script>alert('登录超时，请重新登录');window.location='../login/login.html'</script>");
+    }
+
+    DB db = new DB();
+    db.connectToDB();
+    ResultSet resultSet = db.queryZxs();
+%>
 <form accept-charset="UTF-8" action="submitzxdj.jsp" method="post" id="msform">
     <!-- progressbar -->
     <ul class="fs-title" style="align-content: center;font-size: xx-large">
@@ -68,12 +81,12 @@
 
                         String info = "";
                         if (date>100){
-                            info = "周"+(date-100)+","+ks+":00~"+js+":00";
+                            info = "周"+(date-100)+" ，"+ks+":00~"+js+":00";
                         }else {
                             info = date+"号,"+ks+":00~"+js+":00";
                         }
                     %>
-                    <input style="width:100%;text-align: center;color: red" type="text" value="<%=info%>" name="date" readonly>
+                    <input style="width:100%;text-align: center;color: green" type="text" value="<%=info%>" name="date" readonly>
                 </td>
             </tr>
             <tr>
@@ -81,8 +94,27 @@
                 <td class="c2" >
                     <%
                         String zxsName = request.getParameter("zxsName");
+                        int price = 800;//默认800百
+                        try {
+                            while (resultSet.next()){
+                                if (resultSet.getString("name").equals(zxsName)){
+                                    price = resultSet.getInt("price");
+                                }
+                            }
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
                     %>
-                    <input style="width:100%;text-align: center;color: red" type="text" value="<%=zxsName%>" name="zxsName" readonly>
+                    <input style="width:100%;text-align: center;color: green" type="text" value="<%=zxsName%> ，<%=price%>元/50分钟" name="zxsName" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td  class="c1" align="left"><h2 class="fs-subtitle-1">本次费用(元):</h2></td>
+                <td class="c2" >
+                    <%
+                        int totalPrice = price*(js-ks);
+                    %>
+                    <input style="width:100%;text-align: center;color: green" type="text" value="<%=totalPrice%>" name="totalPrice" readonly>
                 </td>
             </tr>
             <tr>
@@ -112,7 +144,7 @@
                     <div>
                         <nobr>
                             <label>
-                                <input style="display: inline;width: auto" type="checkbox"  name="zxwt" checked value="无" />无
+                                <input style="display: inline;width: auto" type="checkbox"  name="zxwt" checked value="其他" />其他
                             </label>
                             <label>
                                 <input style="display: inline;width: auto" type="checkbox"  name="zxwt" value="人际关系" />人际关系

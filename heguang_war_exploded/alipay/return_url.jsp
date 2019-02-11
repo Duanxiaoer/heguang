@@ -8,7 +8,6 @@
 <%@ page import="java.util.*"%>
 <%@ page import="java.util.Map"%>
 <%@ page import="heguang.org.cn.AlipayConfig"%>
-<%@ page import="com.alipay.api.*"%>
 <%@ page import="com.alipay.api.internal.util.*"%>
 <%@ page import="heguang.org.cn.DB" %>
 <%
