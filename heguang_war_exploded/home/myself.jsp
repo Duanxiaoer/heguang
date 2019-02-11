@@ -361,10 +361,10 @@
                             <%
                                 ResultSet resultSetAli = db.queryAlipay("email",session.getAttribute("email").toString());
                                 try {
-                                    while (resultSetZX.next()){
+                                    while (resultSetAli.next()){
                             %>
                             <tr>
-                                <td><%=resultSetAli.getString("trade_no").substring(0,7)%></td>
+                                <td><%=resultSetAli.getString("trade_no").substring(0,8)%></td>
                                 <td><%="账户充值"%></td>
                                 <td><%=resultSetAli.getString("out_trade_no")%></td>
                                 <td><%=resultSetAli.getString("total_amount")%></td>
