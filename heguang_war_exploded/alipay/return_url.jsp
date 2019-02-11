@@ -55,6 +55,7 @@
 
 		DB db = new DB();
 		db.connectToDB();
+		db.insertAlipay(session.getAttribute("name").toString(),session.getAttribute("email").toString(),out_trade_no,trade_no,String.valueOf(total_amount));
 		db.updateYuE(session.getAttribute("email").toString(),total_amount);
 
 
