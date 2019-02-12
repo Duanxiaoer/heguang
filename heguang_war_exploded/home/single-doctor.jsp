@@ -395,8 +395,8 @@
 
                                         int count = 28;//显示的总天数
 
-                                        //只适配了中文和英文系统
-                                        while (!xq.format(ca.getTime()).equals("星期日") || !xq.format(ca.getTime()).equals("Sun")) {//找到上一个星期日
+                                        //只适配了中英文
+                                        while (!xq.format(ca.getTime()).equals("星期日") && !xq.format(ca.getTime()).equals("Sun")) {//找到上一个星期日
                                             ca.add(Calendar.DATE, -1);//前一天
                                         }
                                         //ca此时的时间为上个周日
@@ -427,9 +427,6 @@
                                 </tr>
                             </table>
                             <br>
-                            <%
-                                System.out.println("11111");
-                            %>
                             <div id="alltime">
                             </div>
                             <div id="sparetime">
@@ -672,9 +669,6 @@
 
 <script>
 
-    <%
-    System.out.println("2222");
-    %>
     function getUrlParam(url) {
         var param = {};
         if (url.indexOf("?") !== -1) {
@@ -693,14 +687,9 @@
         }
         return param;
     }
-    <%
-    System.out.println("3333");
-    %>
+
     var url = decodeURIComponent(location.search);//解决中文乱码
     var param = getUrlParam(url);
-    <%
-    System.out.println("4444");
-    %>
 </script>
 <script>
     function Sparetime(date,obj) {
@@ -810,14 +799,9 @@
             }
         })
     }
-    <%
-System.out.println("666");
-%>
+
     function gotoYY(date,ks,js) {
         window.location = "../admin/zxdj.jsp?date="+date+"&ks="+ks+"&js="+js+"&zxsName=<%=zxsName%>";
-        <%
-        System.out.println("555");
-        %>
     }
 
 </script>
