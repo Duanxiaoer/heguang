@@ -308,7 +308,7 @@
                             <h5>医生简介</h5>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
                             <ul>
-                                <li><a href="single-doctor.jsp?zxsName=<%=zxsName%>&zxsEmail=<%=rs.getString("email")%>&price=<%=rs.getInt("price")%>">预约</a></li>
+                                <li><a href="testimonial.jsp?zxsName=<%=zxsName%>&zxsEmail=<%=rs.getString("email")%>&price=<%=rs.getInt("price")%>">预约</a></li>
                             </ul>
                         </div>
                     </div>
