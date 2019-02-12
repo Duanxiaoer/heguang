@@ -375,13 +375,13 @@
                             <hr>
                             <table>
                                 <tr>
-                                    <th onclick="Sparetime(107)">星期日</th>
-                                    <th onclick="Sparetime(101)">星期一</th>
-                                    <th onclick="Sparetime(102)">星期二</th>
-                                    <th onclick="Sparetime(103)">星期三</th>
-                                    <th onclick="Sparetime(104)">星期四</th>
-                                    <th onclick="Sparetime(105)">星期五</th>
-                                    <th onclick="Sparetime(106)">星期六</th>
+                                    <th onclick="Sparetime(107,this)">星期日</th>
+                                    <th onclick="Sparetime(101,this)">星期一</th>
+                                    <th onclick="Sparetime(102,this)">星期二</th>
+                                    <th onclick="Sparetime(103,this)">星期三</th>
+                                    <th onclick="Sparetime(104,this)">星期四</th>
+                                    <th onclick="Sparetime(105,this)">星期五</th>
+                                    <th onclick="Sparetime(106,this)">星期六</th>
                                 </tr>
 
                                 <tr>
@@ -704,7 +704,6 @@
             url: "/querySparetime",
             data: {date: date,email:email},
             success: function (result) {
-                alert(result.length);
                 if (result.length<1) {
                     //没有单独为这一天设置时间安排，则采用星期的安排
                     var xq = obj.id.split("A")[0];
@@ -738,7 +737,6 @@
                             xq = 107;
                             break;
                     }
-                    alert("xq"+xq);
                     querySparetimeXQ(xq);
                 }else {
                     var alltime = document.getElementById("alltime");
@@ -764,8 +762,6 @@
             url: "/querySparetime",
             data: {date: date,email:email},
             success: function (result) {
-                alert("success");
-                alert(result.length);
                 var alltime = document.getElementById("alltime");
                 alltime.innerHTML = "";
 
