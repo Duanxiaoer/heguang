@@ -398,7 +398,7 @@
 
                                     int count = 28;//显示的总天数
 
-                                    while (!xq.format(ca.getTime()).equals("星期日")) {//找到上一个星期日
+                                    while (!xq.format(ca.getTime()).equals("星期日") && !xq.format(ca.getTime()).equals("Sun")) {//找到上一个星期日
                                         ca.add(Calendar.DATE, -1);//前一天
                                     }
                                     //ca此时的时间为上个周日
@@ -416,7 +416,7 @@
                                 </a>
                                 </td>
                                 <%
-                                    if (xq.format(ca.getTime()).equals("星期六")) {
+                                    if (xq.format(ca.getTime()).equals("星期六") || xq.format(ca.getTime()).equals("Sat")) {
                                 %>
                             </tr>
                             <tr>
@@ -857,24 +857,31 @@
                     //没有单独为这一天设置时间安排，则采用星期的安排
                     var xq = obj.id.split("A")[0];
                     switch (xq) {
+                        case "Mon":
                         case "星期一":
                             xq = 101;
                             break;
+                        case "Tue":
                         case "星期二":
                             xq = 102;
                             break;
+                        case "Wed":
                         case "星期三":
                             xq = 103;
                             break;
+                        case "Thu":
                         case "星期四":
                             xq = 104;
                             break;
+                        case "Fri":
                         case "星期五":
                             xq = 105;
                             break;
+                        case "Sat":
                         case "星期六":
                             xq = 106;
                             break;
+                        case "Sun":
                         case "星期日":
                             xq = 107;
                             break;
