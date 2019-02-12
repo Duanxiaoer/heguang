@@ -342,14 +342,13 @@
                             <h4>个人简介</h4>
                             <hr>
                             <%
-//                                Util readzl = new Util();
-//                                String webPath = application.getRealPath("/");
+                                Util readzl = new Util();
+                                String webPath = application.getRealPath("/");
                                 String zxsName = request.getParameter("zxsName");
                                 String zxsEmail = request.getParameter("zxsEmail");
                                 String price = request.getParameter("price");
 
-//                                JSONObject object = JSONObject.fromObject(readzl.readZl(zxsName,webPath));
-                                JSONObject object = new JSONObject();
+                                JSONObject object = JSONObject.fromObject(readzl.readZl(zxsName,webPath));
 
                                 String zc = "";
                                 String scly = "";
