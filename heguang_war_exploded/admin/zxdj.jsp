@@ -78,6 +78,7 @@
                         int date = Integer.parseInt(request.getParameter("date"));
                         int ks = Integer.parseInt(request.getParameter("ks"));
                         int js = Integer.parseInt(request.getParameter("js"));
+                        String zxsEmail = request.getParameter("zxsEmail");
 
                         String info = "";
                         if (date>100){
@@ -106,6 +107,7 @@
                         }
                     %>
                     <input style="width:100%;text-align: center;color: green" type="text" value="<%=zxsName%> £¬<%=price%>Ôª/50·ÖÖÓ" name="zxsName" readonly>
+                    <input type="email" value="<%=zxsEmail%>" hidden name="zxsEmail" readonly>
                 </td>
             </tr>
             <tr>

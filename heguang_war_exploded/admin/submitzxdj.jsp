@@ -21,6 +21,7 @@
 
     String date = request.getParameter("date");
     String zxsName = request.getParameter("zxsName");
+    String zxsEmail = request.getParameter("zxsEmail");
     int totalPrice = Integer.parseInt(request.getParameter("totalPrice"));
 
     String zxlb = request.getParameter("zxlb");
@@ -53,11 +54,12 @@
     String relationship_name = request.getParameter("relationship-name");
     String relationship_tel = request.getParameter("relationship-tel");
 
-    if (zxlb.isEmpty()|| zxwt.isEmpty()|| qzyy.isEmpty()|| sfjsgxl.isEmpty()|| sfjsgjs.isEmpty()|| sfzs.isEmpty()|| qita.isEmpty()||customerName.isEmpty()
+    if (zxlb.isEmpty()|| zxwt.isEmpty()| zxsEmail.isEmpty()|| qzyy.isEmpty()|| sfjsgxl.isEmpty()|| sfjsgjs.isEmpty()|| sfzs.isEmpty()|| qita.isEmpty()||customerName.isEmpty()
             ||sex.isEmpty()||customerTel.isEmpty()||age.isEmpty()||location.isEmpty()||education.isEmpty()||job.isEmpty()||income.isEmpty()
             ||marriage.isEmpty()||children.isEmpty()||relationship.isEmpty()||relationship_name.isEmpty()||relationship_tel.isEmpty()||date.isEmpty()){
         writer.print("<script>alert('请将信息填写完整！');window.history.back()</script>");
         return;
+
     }
     HttpSession httpSession =request.getSession();
     String userName = (String) httpSession.getAttribute("name");
@@ -70,7 +72,8 @@
         }
     }
     if (online){
-        String kuaidiInfo = "\n 你已经登记成功";
+        System.out.println(zxsEmail);
+        String kuaidiInfo = "\n "+date+zxsEmail+zxsName+totalPrice+zxlb;
 
         //用户余额扣除本次费用
         db.updateYuE(userEmail,-totalPrice);
@@ -78,7 +81,8 @@
         db.insertZXDJ(date,zxsName,totalPrice,zxlb, zxwt, qzyy, sfjsgxl, sfjsgjs, sfzs, qita, customerName, sex, customerTel, age, location, education,  job,  income,  marriage
                 , children, relationship, relationship_name,  relationship_tel, userEmail);
 
-//        SentEmail.sendEmail_kuaidi("scuxiaoer@126.com",kuaidiInfo);
+        //通知咨询师
+        SentEmail.sendEmail_YuYue(zxsEmail,kuaidiInfo);
         writer.print("<script>alert('登记成功！');window.location='../home/myself.jsp'</script>");
     }else{
         writer.print("<script>alert('操作超时，请重新登录！');window.location='../login/login.html'</script>");

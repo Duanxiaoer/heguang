@@ -6,6 +6,15 @@ SELECT * FROM `zxs_wwl@q` order by date ASC ;
 []
 连接数据库
 SELECT * FROM `zxs_wwl@q` order by date ASC ;
+[{"id":"3","date":"107","ks":"14","js":"17","cs":"3","jg":"5","fs":"面","bz":""}]
+连接数据库
+SELECT * FROM `zxs_wwl@q` order by date ASC ;
+[]
+连接数据库
+SELECT * FROM `zxs_wwl@q` order by date ASC ;
+[]
+连接数据库
+SELECT * FROM `zxs_wwl@q` order by date ASC ;
 []
 连接数据库
 SELECT * FROM `zxs_wwl@q` order by date ASC ;
@@ -21,55 +30,7 @@ SELECT * FROM `zxs_wwl@q` order by date ASC ;
 []
 连接数据库
 SELECT * FROM `zxs_wwl@q` order by date ASC ;
-[]
-连接数据库
-SELECT * FROM `zxs_wwl@q` order by date ASC ;
-[]
-连接数据库
-SELECT * FROM `zxs_wwl@q` order by date ASC ;
-[]
-连接数据库
-SELECT * FROM `zxs_wwl@q` order by date ASC ;
-[{"id":"3","date":"107","ks":"14","js":"17","cs":"3","jg":"5","fs":"面","bz":""}]
-连接数据库
-SELECT * FROM `zxs_wwl@q` order by date ASC ;
-[]
-连接数据库
-SELECT * FROM `zxs_wwl@q` order by date ASC ;
-[]
-连接数据库
-SELECT * FROM `zxs_wwl@q` order by date ASC ;
-[{"id":"3","date":"107","ks":"14","js":"17","cs":"3","jg":"5","fs":"面","bz":""}]
-连接数据库
-SELECT * FROM `zxs_wwl@q` order by date ASC ;
-[]
-连接数据库
-SELECT * FROM `zxs_wwl@q` order by date ASC ;
-[{"id":"3","date":"107","ks":"14","js":"17","cs":"3","jg":"5","fs":"面","bz":""}]
-连接数据库
-SELECT * FROM `zxs_wwl@q` order by date ASC ;
-[]
-连接数据库
-SELECT * FROM `zxs_wwl@q` order by date ASC ;
-[]
-连接数据库
-SELECT * FROM `zxs_wwl@q` order by date ASC ;
-[{"id":"3","date":"107","ks":"14","js":"17","cs":"3","jg":"5","fs":"面","bz":""}]
-连接数据库
-SELECT * FROM `zxs_wwl@q` order by date ASC ;
-[]
-连接数据库
-SELECT * FROM `zxs_wwl@q` order by date ASC ;
-[{"id":"3","date":"107","ks":"14","js":"17","cs":"3","jg":"5","fs":"面","bz":""}]
-连接数据库
-SELECT * FROM `zxs_wwl@q` order by date ASC ;
-[]
-连接数据库
-SELECT * FROM `zxs_wwl@q` order by date ASC ;
-[{"id":"3","date":"107","ks":"14","js":"17","cs":"3","jg":"5","fs":"面","bz":""}]
-连接数据库
-SELECT * FROM `zxs_wwl@q` order by date ASC ;
-[]
+[{"id":"2","date":"102","ks":"15","js":"17","cs":"2","jg":"5","fs":"面","bz":"李四"}]
 连接数据库
 SELECT * FROM `zxs_wwl@q` order by date ASC ;
 []
@@ -84,7 +45,35 @@ SELECT * FROM `zxs_wwl@q` order by date ASC ;
 []
 连接数据库
 SELECT * FROM `zxs_wwl@q` order by date ASC ;
-[]
+[{"id":"1","date":"20","ks":"6","js":"12","cs":"1","jg":"5","fs":"面","bz":""}]
 连接数据库
 SELECT * FROM `zxs_wwl@q` order by date ASC ;
 []
+连接数据库
+SELECT * FROM `zxs_wwl@q` order by date ASC ;
+[{"id":"2","date":"102","ks":"15","js":"17","cs":"2","jg":"5","fs":"面","bz":"李四"}]
+连接数据库
+SELECT * FROM `zxs_wwl@q` order by date ASC ;
+[{"id":"2","date":"102","ks":"15","js":"17","cs":"2","jg":"5","fs":"面","bz":"李四"}]
+连接数据库
+SELECT * FROM `zxs_wwl@q` order by date ASC ;
+[]
+连接数据库
+SELECT * FROM `zxs_wwl@q` order by date ASC ;
+[{"id":"2","date":"102","ks":"15","js":"17","cs":"2","jg":"5","fs":"面","bz":"李四"}]
+连接数据库
+SELECT * FROM `zxs_wwl@q` order by date ASC ;
+[]
+连接数据库
+SELECT * FROM `zxs_wwl@q` order by date ASC ;
+[{"id":"2","date":"102","ks":"15","js":"17","cs":"2","jg":"5","fs":"面","bz":"李四"}]
+连接数据库
+SELECT * FROM `zxs_wwl@q` order by date ASC ;
+[]
+连接数据库
+SELECT * FROM `zxs_wwl@q` order by date ASC ;
+[{"id":"2","date":"102","ks":"15","js":"17","cs":"2","jg":"5","fs":"面","bz":"李四"}]
+连接数据库
+连接数据库
+连接数据库
+连接数据库

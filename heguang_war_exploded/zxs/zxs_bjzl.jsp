@@ -2,8 +2,6 @@
 <%@ page import="java.util.Calendar" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.io.PrintWriter" %>
-<%@ page import="heguang.org.cn.DB" %>
-<%@ page import="net.sf.json.JSONArray" %>
 <%@ page import="net.sf.json.JSONObject" %>
 <%@ page import="heguang.org.cn.Util" %><%--
   Created by IntelliJ IDEA.
@@ -312,7 +310,174 @@
 </section>
 <!-- END PAGE BANNER AND BREADCRUMBS -->
 
+<!-- START SINGLE DOCTOR SECTION -->
+<section id="singledoctor" style="padding-top: 10px" class="section-padding doctor-page">
+    <div class="auto-container">
+        <div class="row">
+            <div style="width: 100%" class="row">
+                <div style="float: left;width: 25%;margin-left: 2%;margin-right: 2%">
+                    <div style="height: fit-content;width: fit-content;min-height: 250px;min-width: 200px"
+                         class="single-doctor single-doctor-warp">
+                        <img id="img"  src="../upload/img/<%=name%>.jpg" class="img-fluid" alt="">
+                        <div class="single-doctor-info">
+                            <h4 id="name"><%=name%>
+                            </h4>
+                            <span id="type">Ophthalmologist</span>
+                            <span hidden id="email"><%=email%></span>
+                        </div>
+                        <div class="single-doctor-mask">
+                            <div class="single-doctor-mask-inner">
+                                <h5>更换照片</h5>
+                                <form method="post" action="${pageContext.request.contextPath}/UploadPersonImg" enctype="multipart/form-data">
+                                    <input type="file" name="uploadFile"/>
+                                    <br/><br/>
+                                    <input type="submit" value="上传"/>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="float: right;width: 70%;">
+                    <div class="doctor-schedule">
+                        <h4>个人简介</h4>
+                        <hr>
+                        <form id="zczl" action="#" onsubmit="return false" method="post">
+                            <table>
+                                <%
+                                    Util readzl = new Util();
+                                    String webPath = application.getRealPath("/");
+                                    JSONObject object = JSONObject.fromObject(readzl.readZl(name,webPath));
 
+                                    String zc = "";
+                                    String scly = "";
+                                    String gzjy = "";
+                                    String sxbj = "";
+                                    String xshd = "";
+                                    if (!object.isEmpty()){
+                                        zc = object.getString("zc");
+                                        scly = object.getString("scly");
+                                        gzjy = object.getString("gzjy");
+                                        sxbj = object.getString("sxbj");
+                                        xshd = object.getString("xshd");
+                                    }
+                                %>
+                                <tr>
+                                    <td style="width: fit-content;height: auto;text-align: center;">职称/资质</td>
+                                    <td style="width: auto;height: auto"><textarea name="zc"
+                                            style="height: 100px;width: 100%;border-style: solid"><%=zc%></textarea></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: fit-content;height: auto;text-align: center">擅长领域</td>
+                                    <td style="width: auto;height: auto"><textarea name="scly"
+                                            style="height: 100px;width: 100%;border-style: solid"><%=scly%></textarea></td>
+                                </tr>
+                            </table>
+                        </form>
+                        <br>
+                        <h4>咨询时间</h4>
+                        <hr>
+                        <table>
+                            <tr>
+                                <th onclick="addSparetime(107)">星期日</th>
+                                <th onclick="addSparetime(101)">星期一</th>
+                                <th onclick="addSparetime(102)">星期二</th>
+                                <th onclick="addSparetime(103)">星期三</th>
+                                <th onclick="addSparetime(104)">星期四</th>
+                                <th onclick="addSparetime(105)">星期五</th>
+                                <th onclick="addSparetime(106)">星期六</th>
+                            </tr>
+
+                            <tr>
+                                <%
+                                    Date nowDate = new Date();
+                                    Calendar ca = Calendar.getInstance();
+                                    ca.setTime(nowDate);
+
+                                    SimpleDateFormat hs = new SimpleDateFormat("dd");
+                                    SimpleDateFormat xq = new SimpleDateFormat("E");
+
+                                    int count = 28;//显示的总天数
+
+                                    while (!xq.format(ca.getTime()).equals("星期日")) {//找到上一个星期日
+                                        ca.add(Calendar.DATE, -1);//前一天
+                                    }
+                                    //ca此时的时间为上个周日
+                                    while (count > 0) {
+                                        int tempDate = Integer.parseInt(hs.format(ca.getTime()));
+                                        String tempDateXQ = xq.format(ca.getTime());
+                                        String color = "red";
+                                        if (ca.getTime().compareTo(nowDate) > 0) {
+                                            color = "green";
+                                        }
+                                %>
+                                <td style="text-align: center;" id="<%=tempDateXQ%>A<%=tempDate%>"
+                                    onclick="addSparetime(<%=tempDate%>,this)"><a
+                                        style="text-align: center;color: <%=color%>;"><%=tempDate%>
+                                </a>
+                                </td>
+                                <%
+                                    if (xq.format(ca.getTime()).equals("星期六")) {
+                                %>
+                            </tr>
+                            <tr>
+                                <%
+                                        }
+                                        ca.add(Calendar.DATE, 1);//后一天
+                                        --count;
+                                    }
+                                %>
+                            </tr>
+                        </table>
+                        <br>
+                        <div style="overflow: scroll">
+                            <table id="alltime">
+
+                            </table>
+                        </div>
+                        <div id="sparetime">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 100%;" class="row mt-5">
+                <div class="single-doc-tab col-lg-12">
+                    <ul id="tabsJustified" class="nav nav-tabs justify-content-left">
+                        <li class="nav-item">
+                            <a href="#" data-target="#one" data-toggle="tab" class="nav-link active">
+                                <i class="icofont icofont-graduate-alt"></i> 工作经验
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" data-target="#two" data-toggle="tab" class="nav-link">
+                                <i class="icofont icofont-hat-alt"></i> 受训背景
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" data-target="#three" data-toggle="tab" class="nav-link">
+                                <i class="icofont icofont-award"></i> 学术活动与成就
+                            </a>
+                        </li>
+                    </ul>
+                    <form id="gzjy" action="#" onsubmit="return false" method="post">
+                        <div id="tabsJustifiedContent" class="tab-content mt-4">
+                            <div id="one" class="tab-pane animated fadeInRight active show">
+                                <textarea name="gzjy" style="height: 50%;width: 60%;border-style: solid"><%=gzjy%></textarea>
+                            </div>
+                            <div id="two" class="tab-pane animated fadeInRight">
+                                <textarea name="sxbj" style="height: 50%;width: 60%;border-style: solid"><%=sxbj%></textarea>
+                            </div>
+                            <div id="three" class="tab-pane animated fadeInRight">
+                                <textarea name="xshd" style="height: 50%;width: 60%;border-style: solid"><%=xshd%></textarea>
+                                <input type="button" value="提交" onclick="xiugaizl(0)">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END SINGLE DOCTOR SECTION -->
 
 
 <!-- START FOOTER -->

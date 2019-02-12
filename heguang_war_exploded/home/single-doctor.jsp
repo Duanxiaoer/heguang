@@ -777,7 +777,7 @@
     }
 
     function gotoYY(date,ks,js) {
-        window.location = "../admin/zxdj.jsp?date="+date+"&ks="+ks+"&js="+js+"&zxsName=<%=zxsName%>";
+        window.location = "../admin/zxdj.jsp?date="+date+"&ks="+ks+"&js="+js+"&zxsName=<%=zxsName%>&zxsEmail=<%=zxsEmail%>";
     }
 
 </script>
