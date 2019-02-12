@@ -426,6 +426,9 @@
                                 </tr>
                             </table>
                             <br>
+                            <%
+                                System.out.println("11111");
+                            %>
                             <div id="alltime">
                             </div>
                             <div id="sparetime">
@@ -668,6 +671,9 @@
 
 <script>
 
+    <%
+    System.out.println("2222");
+    %>
     function getUrlParam(url) {
         var param = {};
         if (url.indexOf("?") !== -1) {
@@ -686,9 +692,14 @@
         }
         return param;
     }
-
+    <%
+    System.out.println("3333");
+    %>
     var url = decodeURIComponent(location.search);//解决中文乱码
     var param = getUrlParam(url);
+    <%
+    System.out.println("4444");
+    %>
 </script>
 <script>
     function Sparetime(date,obj) {
@@ -798,9 +809,14 @@
             }
         })
     }
-
+    <%
+System.out.println("666");
+%>
     function gotoYY(date,ks,js) {
         window.location = "../admin/zxdj.jsp?date="+date+"&ks="+ks+"&js="+js+"&zxsName=<%=zxsName%>";
+        <%
+        System.out.println("555");
+        %>
     }
 
 </script>
