@@ -395,7 +395,8 @@
 
                                         int count = 28;//显示的总天数
 
-                                        while (!xq.format(ca.getTime()).equals("星期日")) {//找到上一个星期日
+                                        //只适配了中文和英文系统
+                                        while (!xq.format(ca.getTime()).equals("星期日") || !xq.format(ca.getTime()).equals("Sun")) {//找到上一个星期日
                                             ca.add(Calendar.DATE, -1);//前一天
                                         }
                                         //ca此时的时间为上个周日
@@ -413,7 +414,7 @@
                                     </a>
                                     </td>
                                     <%
-                                        if (xq.format(ca.getTime()).equals("星期六")) {
+                                        if (xq.format(ca.getTime()).equals("星期六") || xq.format(ca.getTime()).equals("Sat")) {
                                     %>
                                 </tr>
                                 <tr>
