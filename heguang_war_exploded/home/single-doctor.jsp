@@ -309,6 +309,207 @@
 <!-- END PAGE BANNER AND BREADCRUMBS -->
 
 
+<!-- START SINGLE DOCTOR SECTION -->
+<section id="singledoctor" class="section-padding doctor-page">
+    <div class="auto-container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-12">
+                <div class="row">
+                    <div class="col-lg-4 mb-lg-0 mb-md-3 mb-sm-3 mb-3">
+                        <div style="height: fit-content" class="single-doctor single-doctor-warp">
+                            <img id="img" alt="" src="assets/img/team/2.jpg" class="img-fluid" alt="">
+                            <div class="single-doctor-info">
+                                <h4 id="name">Stevest Henry</h4>
+                                <span id="type">Ophthalmologist</span>
+                            </div>
+                            <div class="single-doctor-mask">
+                                <div class="single-doctor-mask-inner">
+                                    <h5>About Doctor</h5>
+                                    <p id="about">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                        eiusmod tempor.</p>
+                                    <ul>
+                                        <li><a href="#"><i class="icofont icofont-social-facebook"></i></a></li>
+                                        <li><a href="#"><i class="icofont icofont-social-twitter"></i></a></li>
+                                        <li><a href="#"><i class="icofont icofont-social-youtube-play"></i></a></li>
+                                        <li><a href="#"><i class="icofont icofont-social-google-plus"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="doctor-schedule">
+                            <h4>个人简介</h4>
+                            <hr>
+                            <%
+//                                Util readzl = new Util();
+//                                String webPath = application.getRealPath("/");
+                                String zxsName = request.getParameter("zxsName");
+                                String zxsEmail = request.getParameter("zxsEmail");
+                                String price = request.getParameter("price");
+
+//                                JSONObject object = JSONObject.fromObject(readzl.readZl(zxsName,webPath));
+                                JSONObject object = new JSONObject();
+
+                                String zc = "";
+                                String scly = "";
+                                String gzjy = "";
+                                String sxbj = "";
+                                String xshd = "";
+                                if (!object.isEmpty()){
+                                    zc = object.getString("zc");
+                                    scly = object.getString("scly");
+                                    gzjy = object.getString("gzjy");
+                                    sxbj = object.getString("sxbj");
+                                    xshd = object.getString("xshd");
+                                }
+                            %>
+                            <span id="zxsEmail" hidden><%=zxsEmail%></span>
+                            <em><b>职称/资质：</b></em><%=zc%>
+                            <br>
+                            <em><b>擅长领域：</b></em><%=scly%>
+                            <br>
+                            <em><b>咨询费用：</b></em><%=price%>元/课时(50分钟)
+                            <br>
+                            <br>
+                            <h4>咨询时间</h4>---红色时间段不可预约
+                            <hr>
+                            <table>
+                                <tr>
+                                    <th onclick="Sparetime(107)">星期日</th>
+                                    <th onclick="Sparetime(101)">星期一</th>
+                                    <th onclick="Sparetime(102)">星期二</th>
+                                    <th onclick="Sparetime(103)">星期三</th>
+                                    <th onclick="Sparetime(104)">星期四</th>
+                                    <th onclick="Sparetime(105)">星期五</th>
+                                    <th onclick="Sparetime(106)">星期六</th>
+                                </tr>
+
+                                <tr>
+                                    <%
+                                        Date nowDate = new Date();
+                                        Calendar ca = Calendar.getInstance();
+                                        ca.setTime(nowDate);
+
+                                        SimpleDateFormat hs = new SimpleDateFormat("dd");
+                                        SimpleDateFormat xq = new SimpleDateFormat("E");
+
+                                        int count = 28;//显示的总天数
+
+                                        while (!xq.format(ca.getTime()).equals("星期日")) {//找到上一个星期日
+                                            ca.add(Calendar.DATE, -1);//前一天
+                                        }
+                                        //ca此时的时间为上个周日
+                                        while (count > 0) {
+                                            int tempDate = Integer.parseInt(hs.format(ca.getTime()));
+                                            String tempDateXQ = xq.format(ca.getTime());
+                                            String color = "red";
+                                            if (ca.getTime().compareTo(nowDate) > 0) {
+                                                color = "green";
+                                            }
+                                    %>
+                                    <td style="text-align: center;" id="<%=tempDateXQ%>A<%=tempDate%>"
+                                        onclick="Sparetime(<%=tempDate%>,this)"><a
+                                            style="text-align: center;color: <%=color%>;"><%=tempDate%>
+                                    </a>
+                                    </td>
+                                    <%
+                                        if (xq.format(ca.getTime()).equals("星期六")) {
+                                    %>
+                                </tr>
+                                <tr>
+                                    <%
+                                            }
+                                            ca.add(Calendar.DATE, 1);//后一天
+                                            --count;
+                                        }
+                                    %>
+                                </tr>
+                            </table>
+                            <br>
+                            <div id="alltime">
+                            </div>
+                            <div id="sparetime">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="single-doc-tab col-lg-12">
+                        <ul id="tabsJustified" class="nav nav-tabs justify-content-left">
+                            <li class="nav-item">
+                                <a href="#" data-target="#one" data-toggle="tab" class="nav-link active">
+                                    <i class="icofont icofont-graduate-alt"></i> 工作经验
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" data-target="#two" data-toggle="tab" class="nav-link">
+                                    <i class="icofont icofont-hat-alt"></i> 受训背景
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" data-target="#three" data-toggle="tab" class="nav-link">
+                                    <i class="icofont icofont-award"></i> 学术活动与成就
+                                </a>
+                            </li>
+                        </ul>
+                        <div id="tabsJustifiedContent" class="tab-content mt-4">
+                            <div id="one" class="tab-pane animated fadeInRight active show">
+                                <textarea disabled style="border-style: none;width: 100%;height: 50%">
+                                    <%="\n"+gzjy%>
+                                </textarea>
+                            </div>
+                            <div id="two" class="tab-pane animated fadeInRight">
+                                <textarea disabled style="border-style: none;width: 100%;height: 50%">
+                                    <%="\n"+sxbj%>
+                                </textarea>
+                            </div>
+                            <div id="three" class="tab-pane animated fadeInRight">
+                                <textarea disabled style="border-style: none;width:100%;height: 50%">
+                                    <%="\n"+xshd%>
+                                </textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <aside class="col-lg-4 col-md-4 col-sm-12 col-12 pl-lg-5 pl-md-5 pl-sm-2 pl-2">
+                <div class="sidebar-widget">
+                    <h5 class="widget-title">预约咨询</h5>
+                    <!-- end widget tittle-->
+                    <div class="appointment-form">
+                        <form action="submitYY.jsp" method="post">
+                            <div class="row">
+                                <div class="form-group col-lg-12">
+                                    <input name="aname" class="form-control" id="afirst-name" placeholder="您的姓名"
+                                           required="required" type="text">
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <input name="aemail" class="form-control" id="aemail" placeholder="您的邮箱"
+                                           required="required" type="email">
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <input name="aphone" class="form-control" id="aphone"
+                                           placeholder="您的联系电话" required="required" type="text">
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <textarea rows="6" name="amessage" class="form-control" id="adescription"
+                                              placeholder="咨询时间，如'每周三下午3点到5点（前提是咨询师开放该时间段）'" required="required"></textarea>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <input type="submit" value="提交" class="btn btn-lg btn-app-form">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- end widget -->
+            </aside>
+        </div>
+    </div>
+    <!--- END CONTAINER -->
+</section>
+<!-- END SINGLE DOCTOR SECTION -->
 
 <!-- START FOOTER -->
 <footer>
