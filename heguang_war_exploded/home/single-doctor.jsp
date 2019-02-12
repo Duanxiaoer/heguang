@@ -693,37 +693,6 @@
 </script>
 <script>
     function Sparetime(date,obj) {
-        var tip = date;
-        if (tip > 100) {
-            tip = "星期";
-            switch (date - 100) {
-                case 1:
-                    tip += "一";
-                    break;
-                case 2:
-                    tip += "二";
-                    break;
-                case 3:
-                    tip += "三";
-                    break;
-                case 4:
-                    tip += "四";
-                    break;
-                case 5:
-                    tip += "五";
-                    break;
-                case 6:
-                    tip += "六";
-                    break;
-                case 7:
-                    tip += "天";
-                    break;
-            }
-            tip += "安排-->";
-        } else {
-            tip = tip + "号：";
-        }
-
         querySparetime(date,obj);//加上信息
     }
 
@@ -735,32 +704,41 @@
             url: "/querySparetime",
             data: {date: date,email:email},
             success: function (result) {
+                alert(result.length);
                 if (result.length<1) {
                     //没有单独为这一天设置时间安排，则采用星期的安排
                     var xq = obj.id.split("A")[0];
                     switch (xq) {
+                        case "Mon":
                         case "星期一":
                             xq = 101;
                             break;
+                        case "Tue":
                         case "星期二":
                             xq = 102;
                             break;
+                        case "Wed":
                         case "星期三":
                             xq = 103;
                             break;
+                        case "Thu":
                         case "星期四":
                             xq = 104;
                             break;
+                        case "Fri":
                         case "星期五":
                             xq = 105;
                             break;
+                        case "Sat":
                         case "星期六":
                             xq = 106;
                             break;
+                        case "Sun":
                         case "星期日":
                             xq = 107;
                             break;
                     }
+                    alert("xq"+xq);
                     querySparetimeXQ(xq);
                 }else {
                     var alltime = document.getElementById("alltime");
@@ -786,6 +764,8 @@
             url: "/querySparetime",
             data: {date: date,email:email},
             success: function (result) {
+                alert("success");
+                alert(result.length);
                 var alltime = document.getElementById("alltime");
                 alltime.innerHTML = "";
 
