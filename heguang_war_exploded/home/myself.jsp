@@ -453,7 +453,6 @@
                         <table>
                             <tr>
                                 <th>时间</th>
-                                <th>消费事项</th>
                                 <th>订单号</th>
                                 <th>金额</th>
                             </tr>
@@ -464,7 +463,17 @@
                             %>
                             <tr>
                                 <td><%=resultSetAli.getString("trade_no").substring(0,8)%></td>
+                                <%
+                                if (resultSetAli.getString("trade_no").length()<15){
+                                %>
+                                <td><%="账户充值-线下"%></td>
+                                <%
+                                }else{
+                                %>
                                 <td><%="账户充值"%></td>
+                                <%
+                                }
+                                %>
                                 <td><%=resultSetAli.getString("out_trade_no")%></td>
                                 <td><%=resultSetAli.getString("total_amount")%></td>
                             </tr>
