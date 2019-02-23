@@ -1,5 +1,6 @@
 <%@ page import="heguang.org.cn.DB" %>
-<%@ page import="java.sql.ResultSet" %><%--
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="heguang.org.cn.Util" %><%--
   Created by IntelliJ IDEA.
   User: duanqifeng
   Date: 2019/1/12
@@ -8,6 +9,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="zxx">
+
+<%
+    Util.outputLog(application.getRealPath("/"));
+%>
 
 <head>
     <meta charset="utf-8">

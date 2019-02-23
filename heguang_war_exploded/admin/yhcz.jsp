@@ -342,7 +342,7 @@
         <div class="lrgz-page-top">
             <div class="row">
                 <div style="width: 100%" class="container">
-                    <form action="ckgzjl.jsp" method="post">
+                    <form action="yhcz.jsp" method="post">
                         <div style="padding-left: 5px"><input name="keywords" style="float: left" type="text"
                                                               placeholder="姓名查询"><input
                                 style="float: left;margin-left: 10px;border-style: hidden;color: #4cae4c" type="submit"
@@ -442,16 +442,12 @@
                     <br>
 
                     <div style="padding-right: 20px;padding-left: 20px">
-                        <div style="float: left;width: 20px">
-                            <a href="lrgz.jsp"><input style="color: #ff4828" type="submit" value="添加记录"
-                                                      class="btn btn-primary"></a>
-                        </div>
                         <div style="float: right">
-                            <a href="ckgzjl.jsp?pgno=<%=PageNow-1 %>&pgcnt=66" class="action-button"><input
+                            <a href="yhcz.jsp?pgno=<%=PageNow-1 %>&pgcnt=66" class="action-button"><input
                                     style="color: #4cae4c" type="submit" value="上一页" class="btn btn-primary"></a>
                         </div>
                         <div style="float: right;margin-right: 5px">
-                            <a href="ckgzjl.jsp?pgno=<%=PageNow+1 %>&pgcnt=66"><input style="color: #4cae4c"
+                            <a href="yhcz.jsp?pgno=<%=PageNow+1 %>&pgcnt=66"><input style="color: #4cae4c"
                                                                                       type="submit" value="下一页"
                                                                                       class="btn btn-primary"></a>
                         </div>
@@ -643,7 +639,6 @@
 
 
     function chongzhi(name,email) {
-       alert(email+name);
        window.location = "recharge-admin.jsp?email="+email+"&name="+name;
     }
 
