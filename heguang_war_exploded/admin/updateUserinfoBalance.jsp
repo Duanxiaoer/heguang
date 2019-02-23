@@ -31,7 +31,7 @@
     Date date = new Date(lt);
     String dateString =  simpleDateFormat.format(date);
 
-    db.insertAlipay(Uemail,Uname,WIDout_trade_no,dateString,String.valueOf(WIDtotal_amount));
+    db.insertAlipay(Uname,Uemail,WIDout_trade_no,dateString,String.valueOf(WIDtotal_amount));
     db.updateYuE(Uemail,WIDtotal_amount);
 
     out.print("<script>alert('充值成功！');window.location = '../admin/yhcz.jsp' </script>");
