@@ -26,7 +26,6 @@
     db.connectToDB();
 
     //此处支付宝订单号为时间
-
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
     long lt = new Long(WIDout_trade_no);
     Date date = new Date(lt);
