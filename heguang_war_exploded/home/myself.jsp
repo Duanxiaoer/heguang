@@ -2,7 +2,8 @@
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="java.util.Date" %><%--
+<%@ page import="java.util.Date" %>
+<%@ page import="java.util.Random" %><%--
   Created by IntelliJ IDEA.
   User: duanqifeng
   Date: 2019/1/13
@@ -311,35 +312,113 @@
     <div class="auto-container">
         <div class="error-page-top">
             <div class="row">
-                <div style="width: 45%;height: 400px;margin:2%;padding: 5px;">
+                <div style="width: 100%;height: 400px;margin:2%;padding: 5px;">
                     <h5>咨询记录</h5>
                     <div style="width: 100%;height: 300px;margin:2%;overflow: scroll;border-style: solid">
-                        <table>
+                        <table style="width: 200%;overflow: scroll">
                             <tr>
-                                <th>时间</th>
+                                <th>序号</th>
+                                <th>预约时间</th>
+                                <%
+                                if (session.getAttribute("zxsName") != null){
+                                %>
+                                <th>来访者</th>
+                                <th>性别</th>
+                                <th>年龄</th>
+                                <th>电话</th>
+                                <th>居住城市</th>
+                                <th>学历</th>
+                                <th>从事行业</th>
+                                <th>收入</th>
+                                <th>婚姻状态</th>
+                                <th>是否有子女</th>
+                                <th>紧急联系人</th>
+                                <th>咨询类别</th>
+                                <th>咨询问题</th>
+                                <th>具体描述</th>
+                                <th>是否接受过心理咨询</th>
+                                <th>是否接受过精神科相关的诊断或治疗</th>
+                                <th>是否有过自伤/自杀的想法、计划或行为</th>
+                                <th>其他问题</th>
+                                <%
+                                }else {
+                                %>
                                 <th>咨询师</th>
+                                <%
+                                }
+                                %>
                                 <th>咨询时间</th>
                                 <th>费用</th>
                             </tr>
                             <%
-                                ResultSet resultSetZX = db.queryZXFY("admin",session.getAttribute("email").toString());
+                                ResultSet resultSetZX = null;
+                                //总咨询金额
+                                int zongjine = 0;
+                                //本月总咨询金额
+                                int benyuezongjine = 0;
+                                //用来统计本月咨询费用
+                                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM");//设置日期格式
+                                String nowMonth = df.format(new Date());// new Date()为获取当前系统时间
+                                System.out.println(nowMonth);
+
+                                if (session.getAttribute("zxsName") != null){
+                                    resultSetZX = db.queryZXFY("zxsName",session.getAttribute("name").toString());
+                                }else {
+                                    resultSetZX = db.queryZXFY("admin",session.getAttribute("email").toString());
+                                }
 
                                 try {
 
+                                    int count = 1;
                                     while (resultSetZX.next()){
                                         String dateString = "";
                                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                                         long lt = new Long(resultSetZX.getString("timestamp"));
                                         Date date = new Date(lt);
                                         dateString = simpleDateFormat.format(date);
+                                        String[] color = {"#853729","#772671","#043381","650365","#800080"};
+                                        Random random = new Random();
+                                        int index = random.nextInt(5);
                                 %>
-                                <tr>
-                                    <td><%=dateString%></td>
+                                <tr style="background-color: <%=color[index]%>">
+                                    <td><%=count++%></td>
+                                    <td><%=dateString.substring(0,16)%></td>
+                                    <%
+                                        if (session.getAttribute("zxsName") != null){
+                                    %>
+                                    <td><%=resultSetZX.getString("cname")%></td>
+                                    <td><%=resultSetZX.getString("sex")%></td>
+                                    <td><%=resultSetZX.getString("age")%></td>
+                                    <td><%=resultSetZX.getString("ctel")%></td>
+                                    <td><%=resultSetZX.getString("location")%></td>
+                                    <td><%=resultSetZX.getString("education")%></td>
+                                    <td><%=resultSetZX.getString("job")%></td>
+                                    <td><%=resultSetZX.getString("income")%></td>
+                                    <td><%=resultSetZX.getString("marriage")%></td>
+                                    <td><%=resultSetZX.getString("children")%></td>
+                                    <td>紧急联系人：<%=resultSetZX.getString("relationship_name")%>，电话：<%=resultSetZX.getString("relationship_tel")%>，关系：<%=resultSetZX.getString("relationship")%></td>
+                                    <td><%=resultSetZX.getString("zxlb")%></td>
+                                    <td><%=resultSetZX.getString("zxwt")%></td>
+                                    <td><%=resultSetZX.getString("qzyy")%></td>
+                                    <td><%=resultSetZX.getString("sfjsgxl")%></td>
+                                    <td><%=resultSetZX.getString("sfjsgjs")%></td>
+                                    <td><%=resultSetZX.getString("sfzs")%></td>
+                                    <td><%=resultSetZX.getString("qita")%></td>
+                                    <%
+                                    }else {
+                                    %>
                                     <td><%=resultSetZX.getString("zxsName")%></td>
+                                    <%
+                                        }
+                                    %>
                                     <td><%=resultSetZX.getString("date")%></td>
                                     <td><%=resultSetZX.getString("totalPrice")%></td>
                                 </tr>
                                 <%
+                                            zongjine += Integer.parseInt(resultSetZX.getString("totalPrice"));
+                                            if (nowMonth.equals(dateString.substring(0,7))){
+                                                benyuezongjine += Integer.parseInt(resultSetZX.getString("totalPrice"));
+                                            }
                                         }
                                 }catch (Exception e){
                                     e.printStackTrace();
@@ -348,8 +427,28 @@
                         </table>
                     </div>
                 </div>
-                <div style="width: 45%;height: 400px;margin:2%;padding: 5px">
+                <%
+                if (session.getAttribute("zxsName") != null){
+                %>
+                <div style="width: 100%">
+                    <h6 style="margin-right: 5px;float: right">总金额<%=zongjine%>元</h6>
+                    <h6 style="margin-right: 5px;float: right">本月总金额<%=benyuezongjine%>元</h6>
+                </div>
+                <%
+                }
+                %>
+                <div style="width: 100%;height: 400px;margin:2%;padding: 5px">
+                    <%
+                    if (session.getAttribute("zxsName") != null){
+                    %>
+                    <h5>工资记录</h5>
+                    <%
+                    }else {
+                    %>
                     <h5>充值记录</h5>
+                    <%
+                    }
+                    %>
                     <div style="width: 100%;height: 300px;margin:2%;overflow: scroll;border-style: solid">
                         <table>
                             <tr>

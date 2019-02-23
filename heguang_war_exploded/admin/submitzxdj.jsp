@@ -79,7 +79,7 @@
         db.updateYuE(userEmail,-totalPrice);
         //预约记录写入总表
         db.insertZXDJ(date,zxsName,totalPrice,zxlb, zxwt, qzyy, sfjsgxl, sfjsgjs, sfzs, qita, customerName, sex, customerTel, age, location, education,  job,  income,  marriage
-                , children, relationship, relationship_name,  relationship_tel, userEmail);
+                , children, relationship, relationship_name,  relationship_tel, userEmail,userName);
 
         //通知咨询师
         SentEmail.sendEmail_YuYue(zxsEmail,kuaidiInfo);

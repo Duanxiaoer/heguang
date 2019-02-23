@@ -304,7 +304,7 @@
                     <hr>
                 </div>
                 <div class="contact-form mt-4">
-                    <form id="contact-form" class="form" name="enq" method="POST" action="form-process.php">
+                    <form action="submitContact.jsp" method="post">
                         <div class="row">
                             <div class="form-group col-lg-6">
                                 <label>称呼</label>
@@ -332,7 +332,7 @@
                             </div>
                             <div class="form-group col-lg-12 mb0">
                                 <div class="actions">
-                                    <input value="提交" name="submit" id="submitButton" class="btn btn-lg btn-contact-bg" title="Click here to submit your message!" type="submit">
+                                    <input type="submit" value="提交" class="btn btn-lg btn-contact-bg">
                                     <img src="assets/img/ajax-loader.gif" id="loader" style="display:none" alt="loading" width="16" height="16">
                                 </div>
                             </div>

@@ -78,6 +78,7 @@
                             %>
                             <li><a href="myself.jsp?email=<%=email%>"><%=name%></a></li>
                             <li><a href="#footer">联系我们 </a></li>
+                            <li><a href="../login/tuichu.jsp">退出 </a></li>
                             <%
                                     if (session.getAttribute("admin")!=null){
 

@@ -1,0 +1,18 @@
+普通字符串
+/Users/duanqifeng/Documents/scu/heguang/out/artifacts/heguang_war_exploded/upload/zxszl/高骞.txt
+zc : jhj
+
+scly : hjhjjh
+
+gzjy : hjgghjh
+
+sxbj : hgfghg
+
+xshd : hjhsakhdkja
+
+{"zc":"jhj\n","scly":"hjhjjh\n","gzjy":"hjgghjh\n","sxbj":"hgfghg\n","xshd":"hjhsakhdkja\n"}
+连接数据库
+SELECT * FROM `zxs_gaoqian@qq.com` order by date ASC ;
+[]
+连接数据库
+insert into `zxs_gaoqian@qq.com` values(0,107,14,18,4,10,'面','')

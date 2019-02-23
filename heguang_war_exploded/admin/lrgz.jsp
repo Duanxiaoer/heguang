@@ -337,20 +337,20 @@
 						</tr>
 						<tr>
 							<td class="c1"><input type="text" style="text-align: center" placeholder="1" disabled></td>
-							<td class="c1"><input type="text" name="name" ></td>
-							<td class="c2"><input type="text" name="xmmc"></td>
-							<td class="c3"><input type="text" name="lfz"></td>
-							<td class="c1"><input type="number" id="byzxcs" name="byzxcs" onchange="getByyf()"></td>
-							<td class="c1"><input type="text" id="dcfy" name="dcfy" onchange="getByyf()"/></td>
+							<td class="c1"><input type="text" name="name" minlength="2" required></td>
+							<td class="c2"><input type="text" name="xmmc" required></td>
+							<td class="c3"><input type="text" name="lfz" required></td>
+							<td class="c1"><input type="number" id="byzxcs" name="byzxcs" onchange="getByyf()" required></td>
+							<td class="c1"><input type="text" id="dcfy" name="dcfy" onchange="getByyf()" required/></td>
 							<td class="c1"><input type="number" name="syjy"></td>
-							<td class="c1"><input type="text" id="byyf" name="byyf" readonly="readonly"/></td>
-							<td class="c1"><input type="number" name="bysf" /></td>
-							<td class="c1"><input type="number"  name="byjy"></td>
-							<td class="c1"><input type="number" id="zzje" name="zzje" onchange="getFenpei()"></td>
+							<td class="c1"><input type="text" id="byyf" name="byyf" readonly="readonly" required /></td>
+							<td class="c1"><input type="number" name="bysf" required /></td>
+							<td class="c1"><input type="number"  name="byjy" required ></td>
+							<td class="c1"><input type="number" id="zzje" name="zzje" onchange="getFenpei()" required></td>
 							<td class="c1"><input type="number" name="zcs"></td>
-							<td class="c1"><input type="number" id="fcbl" name="fcbl" onchange="getFenpei()"></td>
-							<td class="c1"><input type="number" id="out" name="out" readonly="readonly"></td>
-							<td class="c1"><input type="number" id="income" name="income" readonly="readonly"></td>
+							<td class="c1"><input type="number" maxlength="4" id="fcbl" step="0.01" name="fcbl" onchange="getFenpei()" required></td>
+							<td class="c1"><input type="number" id="out" name="out" readonly="readonly" required></td>
+							<td class="c1"><input type="number" id="income" name="income" readonly="readonly" required></td>
 							<td class="c1"><input type="month" name="date"></td>
 						</tr>
 						<tr>
@@ -366,7 +366,7 @@
 							<td class="c1"><input type="number"  name="byjy1"></td>
 							<td class="c1"><input type="number" id="zzje1" name="zzje1" onchange="getFenpei1()"></td>
 							<td class="c1"><input type="number" name="zcs1"></td>
-							<td class="c1"><input type="number" id="fcbl1" name="fcbl1" onchange="getFenpei1()"></td>
+							<td class="c1"><input type="number"  maxlength="4" id="fcbl1" step="0.01" name="fcbl1" onchange="getFenpei1()"></td>
 							<td class="c1"><input type="number" id="out1" name="out1" readonly="readonly"></td>
 							<td class="c1"><input type="number" id="income1" name="income1" readonly="readonly"></td>
 							<td class="c1"><input type="month" name="date1"></td>
@@ -384,7 +384,7 @@
 							<td class="c1"><input type="number"  name="byjy2"></td>
 							<td class="c1"><input type="number" id="zzje2" name="zzje2" onchange="getFenpei2()"></td>
 							<td class="c1"><input type="number" name="zcs2"></td>
-							<td class="c1"><input type="number" id="fcbl2" name="fcbl2" onchange="getFenpei2()"></td>
+							<td class="c1"><input type="number"  maxlength="4" step="0.01" id="fcbl2" name="fcbl2" onchange="getFenpei2()"></td>
 							<td class="c1"><input type="number" id="out2" name="out2" readonly="readonly"></td>
 							<td class="c1"><input type="number" id="income2" name="income2" readonly="readonly"></td>
 							<td class="c1"><input type="month" name="date2"></td>
@@ -402,7 +402,7 @@
 							<td class="c1"><input type="number"  name="byjy3"></td>
 							<td class="c1"><input type="number" id="zzje3" name="zzje3" onchange="getFenpei3()"></td>
 							<td class="c1"><input type="number" name="zcs3"></td>
-							<td class="c1"><input type="number" id="fcbl3" name="fcbl3" onchange="getFenpei3()"></td>
+							<td class="c1"><input type="number"  maxlength="4" step="0.01" id="fcbl3" name="fcbl3" onchange="getFenpei3()"></td>
 							<td class="c1"><input type="number" id="out3" name="out3" readonly="readonly"></td>
 							<td class="c1"><input type="number" id="income3" name="income3" readonly="readonly"></td>
 							<td class="c1"><input type="month" name="date3"></td>
@@ -420,7 +420,7 @@
 							<td class="c1"><input type="number"  name="byjy4"></td>
 							<td class="c1"><input type="number" id="zzje4" name="zzje4" onchange="getFenpei4()"></td>
 							<td class="c1"><input type="number" name="zcs4"></td>
-							<td class="c1"><input type="number" id="fcbl4" name="fcbl4" onchange="getFenpei4()"></td>
+							<td class="c1"><input type="number"  maxlength="4" step="0.01" id="fcbl4" name="fcbl4" onchange="getFenpei4()"></td>
 							<td class="c1"><input type="number" id="out4" name="out4" readonly="readonly"></td>
 							<td class="c1"><input type="number" id="income4" name="income4" readonly="readonly"></td>
 							<td class="c1"><input type="month" name="date4"></td>
