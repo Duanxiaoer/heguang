@@ -638,7 +638,7 @@
 
 
 
-    function chongzhi(name,email) {
+    function chongzhi(email,name) {
        window.location = "recharge-admin.jsp?email="+email+"&name="+name;
     }
 
