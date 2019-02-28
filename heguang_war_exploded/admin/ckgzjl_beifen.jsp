@@ -3,8 +3,8 @@
 <%@ page import="java.io.PrintWriter" %><%--
   Created by IntelliJ IDEA.
   User: duanqifeng
-  Date: 2019/1/13
-  Time: 11:16 AM
+  Date: 2019/1/12
+  Time: 1:04 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -13,48 +13,88 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <link rel="shortcut icon" type="image/x-icon" href="../home/assets/img/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="../home/assets/img/favicon.ico"/>
     <title></title>
     <!-- Bootstrap core CSS -->
     <link href="../home/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Font  -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,400i,500,500i,600,700|Raleway:400,400i,500i,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,400i,500,500i,600,700|Raleway:400,400i,500i,600,700"
+          rel="stylesheet">
     <!-- flaticon icon -->
     <link rel="stylesheet" href="../home/assets/fonts/icon-font.min.css">
     <!-- icofont icon -->
     <link rel="stylesheet" href="../home/assets/fonts/icofont.css">
     <!--- meanmenu Css-->
-    <link rel="stylesheet" href="../home/assets/css/meanmenu.min.css" media="all" />
+    <link rel="stylesheet" href="../home/assets/css/meanmenu.min.css" media="all"/>
     <!-- animate CSS -->
     <link rel="stylesheet" href="../home/assets/css/animate.css">
     <!--- owl carousel Css-->
     <link rel="stylesheet" href="../home/assets/owlcarousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="../home/assets/owlcarousel/css/owl.theme.default.min.css">
     <!-- venobox -->
-    <link rel="stylesheet" href="../home/assets/venobox/css/venobox.css" />
+    <link rel="stylesheet" href="../home/assets/venobox/css/venobox.css"/>
     <!-- Style CSS -->
     <link rel="stylesheet" href="../home/assets/css/style.css">
     <!-- Responsive  CSS -->
     <link rel="stylesheet" href="../home/assets/css/responsive.css">
+
     <style>
         table {
-            border-style: solid;
+            border-collapse: collapse;
+            border: none;
+            background-color: #FFFFFF;
             width: 100%;
         }
 
-        th{
+        td, th {
             text-align: center;
-            border-style: solid;
+            border: solid grey 1px;
+            margin: 0 0 0 0;
+            padding: 2px 2px 2px 2px
         }
 
-        tr td {
-            border-style: solid;
+        .c1 {
+            width: auto
+        }
+
+        .c2 {
+            width: auto
+        }
+
+        .c1 {
+            width: auto
+        }
+
+        .c4 {
+            width: auto
+        }
+
+        .c1 {
+            width: auto
+        }
+
+        a:link, a:visited {
+            color: blue
+        }
+
+        .container {
+            margin: 0 auto;
+            width: 80%;
             text-align: center;
         }
+
     </style>
+
 </head>
 
 <body>
+
+<%
+    if (session.getAttribute("admin")==null){
+        PrintWriter writer = response.getWriter();
+        writer.print("<script>window.location = '../home/index.jsp'</script>");
+    }
+%>
 
 <!-- START PRELOADER -->
 <div id="page-preloader">
@@ -62,14 +102,6 @@
 </div>
 <!-- END PRELOADER -->
 
-<%
-    request.setCharacterEncoding("UTF-8");
-    response.setCharacterEncoding("UTF-8");
-    PrintWriter printWriter = response.getWriter();
-    if (session.getAttribute("email") == null){
-        printWriter.print("<script>alert('登录超时，请重新登录');window.location='../login/login.html'</script>");
-    }
-%>
 
 <!-- START HEADER SECTION -->
 <header class="main-header header-1">
@@ -107,7 +139,7 @@
                                 if (session.getAttribute("admin")!=null){
 
                             %>
-                            <li><a href="home_menu.html">管理</a></li>
+                            <li><a href="../admin/home_menu.html">管理</a></li>
                             <%
 
                             }else if (session.getAttribute("zxsName")!=null){
@@ -227,8 +259,6 @@
                                 <ul>
                                     <li><a href="../home/index.jsp">Home 1</a></li>
                                     <li><a href="../home/map.html">Home 2</a></li>
-                                    <li><a href="index-3.html">Home 3</a></li>
-                                    <li><a href="index-4.html">Home 4</a></li>
                                 </ul>
                             </li>
                             <li><a href="../home/about.jsp">关于我们</a>
@@ -289,14 +319,14 @@
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12 col-12">
                 <div class="single-page-title">
-                    <h2>订单信息</h2>
+                    <h2>查看工资记录</h2>
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-12">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#"><span class="lnr lnr-home"></span></a></li>
-                    <li class="breadcrumb-item">Pages</li>
-                    <li class="breadcrumb-item active">订单信息</li>
+                    <li class="breadcrumb-item">统计</li>
+                    <li class="breadcrumb-item active">查看工资记录</li>
                 </ol>
             </div>
         </div>
@@ -306,32 +336,173 @@
 <!-- END PAGE BANNER AND BREADCRUMBS -->
 
 
-<!-- START ERROR SECTION -->
-<section id="error" class="section-padding">
+<!-- START lrgz SECTION -->
+<section id="lrgz" class="section-padding">
     <div class="auto-container">
-        <form style="text-align: center" action="updateUserinfoBalance.jsp" method="post">
-            <span style="text-align: right;margin-right: 5px">订单号：</span><input style="text-align: center" type="number" value="<%=System.currentTimeMillis()%>" placeholder="订单号" name="WIDout_trade_no" readonly required>
-            <br>
-            <br>
-            <span style="text-align: right;margin-right: 5px">订单名称：</span><input style="text-align: center" type="text"  value="账户充值-管理员" placeholder="名称" name="WIDsubject" readonly required>
-            <br>
-            <br>
-            <span style="text-align: right;margin-right: 5px">商品描述：</span><input style="text-align: center" type="text" value="账户余额充值" placeholder="商品描述" name="WIDbody" required readonly>
-            <br>
-            <br>
-            <span style="text-align: right;margin-right: 5px">用户姓名：</span><input style="text-align: center" type="text" value="<%=request.getParameter("name")%>" placeholder="用户姓名" name="Uname" required readonly>
-            <br>
-            <br>
-            <span style="text-align: right;margin-right: 5px">用户邮箱：</span><input style="text-align: center" type="text" value="<%=request.getParameter("email")%>" placeholder="用户邮箱" name="Uemail" required readonly>
-            <br>
-            <br>
-            <input type="number"  placeholder="请输入充值金额" name="WIDtotal_amount" required>元
-            <input type="submit" class="btn-app-form" value="充值">
-        </form>
+        <div class="lrgz-page-top">
+            <div class="row">
+                <div style="width: 100%" class="container">
+                    <form action="ckgzjl.jsp" method="post">
+                        <div style="padding-left: 5px"><input name="keywords" style="float: left" type="text"
+                                                              placeholder="姓名查询"><input
+                                style="float: left;margin-left: 10px;border-style: hidden;color: #4cae4c" type="submit"
+                                value="查询"></div>
+                    </form>
+                    <br>
+                    <br>
+                    <div style="border-style: solid;padding-right: 5px;padding-left: 5px;width: 100%;height: auto;overflow: scroll">
+                        <table style="width: 200%">
+                            <tr>
+                                <td class="c1">编号</td>
+                                <td class="c1">日期</td>
+                                <td class="c1">咨询师</td>
+                                <td class="c2">项目名称</td>
+                                <td class="c3">来访者</td>
+                                <td class="1">本月咨询次数</td>
+                                <td class="1">单次费用</td>
+                                <td class="1">来访者上月结余</td>
+                                <td class="1">来访者本月应付</td>
+                                <td class="1">来访者本月实付</td>
+                                <td class="1">来访者本月结余</td>
+                                <td class="1">做账金额</td>
+                                <td class="1">咨询总次数</td>
+                                <td class="1">分成比例</td>
+                                <td class="1">给研究院</td>
+                                <td class="1">给咨询师</td>
+                                <th class='c5'>操作</th>
+                            </tr>
+                            <%
+                                request.setCharacterEncoding("utf-8");
+                                String red = "#ff4d37";
+                                String keywords = "";//网页传过来的查询关键字
+                                String pgno = "";  //网址中传递的页面数据
+                                String pgcnt = ""; //网址传递的每页最大显示数目
+
+                                int RowAmount = 0; //数据库中总的行数
+                                int PageAmount = 0; //数据库所有页面可以组成多少个页面
+                                int PageSize; //每页最大显示数目
+                                int PageNow;  //当前页面
+                                ResultSet rs;
+                                if (request.getParameter("keywords") != null) {//获取网址传递的查询数据
+                                    keywords = request.getParameter("keywords");
+                                }
+                                if (request.getParameter("pgno") != null) {  //获取从网址传递的数据
+                                    pgno = request.getParameter("pgno");
+                                } else {
+                                    pgno = "1";  //赋给初始值防止没有传入数据时崩溃
+                                }
+                                PageNow = java.lang.Integer.parseInt(pgno);
+                                if (PageNow <= 0) {
+                                    PageNow = 1;
+                                }
+
+                                if (request.getParameter("pgcnt") != null) {
+                                    pgcnt = request.getParameter("pgcnt");
+                                } else {
+                                    pgcnt = "66";
+                                }
+                                PageSize = java.lang.Integer.parseInt(pgcnt); //转换为int类型
+
+                                //**连接数据库**
+                                try {
+                                    if (!keywords.equals("")) {
+                                        rs = db.likeQueryGZ("name",keywords);
+                                    } else {
+                                        rs = db.queryGZ();
+                                    }
+//                               获取数据库行数
+                                    rs.last();
+                                    RowAmount = rs.getRow();
+//                                计算数据库中数据最大页面数
+                                    PageAmount = (RowAmount + PageSize - 1) / PageSize;
+                                    if (PageNow > PageAmount) {
+                                        PageNow = PageAmount;
+                                    }
+//            将当前的rs指针指向要显示的页面首条数据
+                                    if (PageAmount > 0) {
+                                        rs.absolute((PageNow - 1) * PageSize + 1);
+                                    }
+//            循环获取数据
+                                    for (int i = 0; i < PageSize && !rs.isAfterLast(); i++) {
+                                        if (Integer.parseInt(rs.getString("id")) % 2 == 0) {
+                                            red = "#FFF";
+                                        } else {
+//                                            red = "#ff4d37";//红色
+                                            red = "#FFF";
+                                        }
+                            %>
+                            <tr>
+                                <td><%=rs.getString("id")%></td>
+                                <td><%=rs.getString("date")%></td>
+                                <td><%=rs.getString("name")%></td>
+                                <td><%=rs.getString("type")%></td>
+                                <td><%=rs.getString("visitor")%></td>
+                                <td><%=rs.getString("times")%></td>
+                                <td><%=rs.getString("price")%></td>
+                                <td><%=rs.getString("lastbalance")%></td>
+                                <td><%=rs.getString("totalprice")%></td>
+                                <td><%=rs.getString("pay")%></td>
+                                <td><%=rs.getString("balance")%></td>
+                                <td><%=rs.getString("zzje")%></td>
+                                <td><%=rs.getString("zcs")%></td>
+                                <td><%=rs.getString("fcbl")%></td>
+                                <td><%=rs.getString("school")%></td>
+                                <td><%=rs.getString("income")%></td>
+                                <td>
+                                    <a style="color: #ff2525">
+                                        <input type="button" onclick="delJL('gz',<%=rs.getInt("id")%>)" value="删除" id="<%=rs.getString("id")%>">
+                                    </a>
+                                </td>
+                            </tr>
+                            <%
+                                        rs.next();
+                                    }
+                                    rs.close();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            %>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <br>
+
+                    <div style="padding-right: 20px;padding-left: 20px">
+                        <div style="float: left;width: 20px">
+                            <a href="lrgz.jsp"><input style="color: #ff4828" type="submit" value="添加记录"
+                                                      class="btn btn-primary"></a>
+                        </div>
+                        <div style="float: right">
+                            <a href="ckgzjl.jsp?pgno=<%=PageNow-1 %>&pgcnt=66" class="action-button"><input
+                                    style="color: #4cae4c" type="submit" value="上一页" class="btn btn-primary"></a>
+                        </div>
+                        <div style="float: right;margin-right: 5px">
+                            <a href="ckgzjl.jsp?pgno=<%=PageNow+1 %>&pgcnt=66"><input style="color: #4cae4c"
+                                                                                      type="submit" value="下一页"
+                                                                                      class="btn btn-primary"></a>
+                        </div>
+                    </div>
+
+                    <br><br>
+                    <br><br>
+
+                    <p>页数:<%=PageAmount %>/<%=PageNow%>&nbsp;&nbsp;&nbsp;总卡数:<%=RowAmount %>
+                    </p>
+
+                </div>
+            </div>
+        </div>
     </div>
     <!--- END CONTAINER -->
 </section>
-<!-- END ERROR SECTION -->
+<!-- END lrgz SECTION -->
+
 
 <!-- START FOOTER -->
 <footer>
@@ -345,8 +516,10 @@
                     </div>
                     <!-- end widget title -->
                     <div class="about">
-                        <p>四川和光临床心理学研究院成立于2016年9月，是合法注册的临床心理学专业研究机构。研究院以促进大众心理健康和构建和谐社会为愿景，集国内外精神分析领域的专业资源与专业人才之力，努力发展成为国内一流的临床服务、人才培养和学术交流的中心。</p>
-                        <p>研究院拥有一支专业的心理咨询师、心理督导师、精神分析师队伍，拥有一批国内外高水平的临床心理学教员。与美国、加拿大、以色列等国家的多个精神分析机构以及国内的多所高校、医院、协会等保持密切的专业合作与交流。在各方资源的支持下，研究院致力于不断推动本地区临床心理学事业的发展，竭诚提供优质的临床心理学服务</p>
+                        <p>
+                            四川和光临床心理学研究院成立于2016年9月，是合法注册的临床心理学专业研究机构。研究院以促进大众心理健康和构建和谐社会为愿景，集国内外精神分析领域的专业资源与专业人才之力，努力发展成为国内一流的临床服务、人才培养和学术交流的中心。</p>
+                        <p>
+                            研究院拥有一支专业的心理咨询师、心理督导师、精神分析师队伍，拥有一批国内外高水平的临床心理学教员。与美国、加拿大、以色列等国家的多个精神分析机构以及国内的多所高校、医院、协会等保持密切的专业合作与交流。在各方资源的支持下，研究院致力于不断推动本地区临床心理学事业的发展，竭诚提供优质的临床心理学服务</p>
                     </div>
                     <div class="footer-logo">
                         <a href="#">
@@ -391,11 +564,13 @@
                     <div class="single-wn-slider owl-carousel owl-theme">
                         <div class="single-wn-item">
                             <p>How to Prevent Eye Injuries?</p>
-                            <p>People at work are equally at risk of eye injuries as those at home. Fortunately, 90 percent of all eye injuries are preventable. Learn how to prevent eye injuries.</p>
+                            <p>People at work are equally at risk of eye injuries as those at home. Fortunately, 90
+                                percent of all eye injuries are preventable. Learn how to prevent eye injuries.</p>
                         </div>
                         <div class="single-wn-item">
                             <p>Need To Know About Scoliosis?</p>
-                            <p>Scoliosis is a sideward bend of the spine which usually occurs in children, but can also sometimes affect adults. A normal spine is curved on the top of the shoulder.</p>
+                            <p>Scoliosis is a sideward bend of the spine which usually occurs in children, but can also
+                                sometimes affect adults. A normal spine is curved on the top of the shoulder.</p>
                         </div>
                     </div>
                     <a class="wn-readm" href="#">了解更多</a>
@@ -420,10 +595,12 @@
                         <form action="#" method="post">
                             <div class="row m-0">
                                 <div class="form-group col-lg-10 col-md-10 col-sm-10 col-10 p-0">
-                                    <input name="fnews"  type="email" class="form-control" placeholder="Your email here...">
+                                    <input name="fnews" type="email" class="form-control"
+                                           placeholder="Your email here...">
                                 </div>
                                 <div class="form-group col-lg-2 col-md-2 col-sm-2 col-2 p-0">
-                                    <button type="submit" class="btn fnews-btn"><i class="icofont icofont-location-arrow"></i></button>
+                                    <button type="submit" class="btn fnews-btn"><i
+                                            class="icofont icofont-location-arrow"></i></button>
                                 </div>
                             </div>
                         </form>
@@ -441,8 +618,8 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12 footer-menu">
                     <ul>
-                        <li><a href="#">预约</a> </li>
-                        <li><a href="#">服务条款</a> </li>
+                        <li><a href="#">预约</a></li>
+                        <li><a href="#">服务条款</a></li>
                     </ul>
                 </div>
             </div>
@@ -451,9 +628,8 @@
 </footer>
 <!-- END FOOTER -->
 
-
 <!-- Latest jQuery -->
-<script src="../home/assets/js/jquery-2.2.4.min.js"></script>
+<script src="../home/assets/js/jquery-1.8.3.min.js"></script>
 <!-- popper js -->
 <script src="../home/assets/bootstrap/js/popper.min.js"></script>
 <!-- Latest compiled and minified Bootstrap -->
@@ -466,19 +642,58 @@
 <script src="../home/assets/js/gijgo.js"></script>
 <!-- owl-carousel min js  -->
 <script src="../home/assets/owlcarousel/js/owl.carousel.min.js"></script>
-<!-- jquery mixitup js -->
-<script src="../home/assets/js/jquery.mixitup.min.js"></script>
 <!-- jquery appear js  -->
 <script src="../home/assets/js/jquery.appear.js"></script>
 <!-- countTo js -->
 <script src="../home/assets/js/jquery.inview.min.js"></script>
+<!-- jquery mixitup js -->
+<script src="../home/assets/js/jquery.mixitup.min.js"></script>
 <!-- venobox js -->
 <script src="../home/assets/venobox/js/venobox.min.js"></script>
 <!-- scrolltopcontrol js -->
 <script src="../home/assets/js/scrolltopcontrol.js"></script>
 <!-- WOW - Reveal Animations When You Scroll -->
 <script src="../home/assets/js/wow.min.js"></script>
+<!-- form-contact js -->
+<script src="../home/assets/js/form-contact.js"></script>
 <!-- scripts js -->
 <script src="../home/assets/js/scripts.js"></script>
 </body>
+<script>
+    //滚动时保存滚动位置
+    $(window).scroll(function(){
+        if($(document).scrollTop()!=0){
+            sessionStorage.setItem("offsetTop", $(window).scrollTop());
+        }
+    });
+    //onload时，取出并滚动到上次保存位置
+    window.onload = function(){
+        var offset = sessionStorage.getItem("offsetTop");
+        $(document).scrollTop(offset);
+    };
+
+
+
+    function delJL(tableName,id) {
+        if (document.getElementById(id).getAttribute("value") === "已删除"){
+            alert("该记录已经被删除！");
+        }else if (confirm('确定要删除这个条记录吗？')){
+            document.getElementById(id).setAttribute("value","已删除");
+            test(tableName,id);
+        }
+    }
+
+
+    function test(tableName,id) {
+        $.ajax({
+            url:"scjl.jsp",
+            type:"POST",
+            data:{tableName:tableName,id:id},
+            success:function(){
+                alert("删除成功");
+            }
+
+        })
+    }
+</script>
 </html>

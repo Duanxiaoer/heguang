@@ -81,10 +81,15 @@
                         String zxsEmail = request.getParameter("zxsEmail");
 
                         String info = "";
-                        if (date>100){
-                            info = "周"+(date-100)+" ，"+ks+":00~"+js+":00";
+                        if (date<100101){
+                            int xq = (date-100);
+                            if (xq==7){
+                                info = "每周日："+ks+":00~"+js+":00";
+                            }else {
+                                info = "每周"+xq+"："+ks+":00~"+js+":00";
+                            }
                         }else {
-                            info = date+"号,"+ks+":00~"+js+":00";
+                            info = date+"："+ks+":00~"+js+":00";
                         }
                     %>
                     <input style="width:100%;text-align: center;color: green" type="text" value="<%=info%>" name="date" readonly>
@@ -106,7 +111,7 @@
                             e.printStackTrace();
                         }
                     %>
-                    <input style="width:100%;text-align: center;color: green" type="text" value="<%=zxsName%> ，<%=price%>元/50分钟" name="zxsName" readonly>
+                    <input style="width:100%;text-align: center;color: green" type="text" value="<%=zxsName%>（<%=price%>元/50分钟）" name="zxsName" readonly>
                     <input type="email" value="<%=zxsEmail%>" hidden name="zxsEmail" readonly>
                 </td>
             </tr>

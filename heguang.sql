@@ -57,7 +57,7 @@ CREATE TABLE `alipay_all` (
   `trade_no` varchar(70) DEFAULT NULL,
   `total_amount` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='和支付宝相关的所有记录';
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='和支付宝相关的所有记录';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +66,7 @@ CREATE TABLE `alipay_all` (
 
 LOCK TABLES `alipay_all` WRITE;
 /*!40000 ALTER TABLE `alipay_all` DISABLE KEYS */;
-INSERT INTO `alipay_all` VALUES (1,'qifeng duan','745298691@qq.com','1549853879585','2019021122001467350500713313','22');
+INSERT INTO `alipay_all` VALUES (1,'qifeng duan','745298691@qq.com','1549853879585','2019021122001467350500713313','22'),(17,'æ®µå¶æ²£','745298691@qq.com','1551341249006','20190228040729','1000'),(18,'段其沣','745298691@qq.com','1551341662209','20190228041422','100000'),(19,'scuxiaoer','scuxiaoer@126.com','1551354696417','20190228075136','100000');
 /*!40000 ALTER TABLE `alipay_all` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,7 +98,7 @@ CREATE TABLE `gz` (
   `timestamp` mediumtext,
   PRIMARY KEY (`id`),
   UNIQUE KEY `idgz_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -107,7 +107,6 @@ CREATE TABLE `gz` (
 
 LOCK TABLES `gz` WRITE;
 /*!40000 ALTER TABLE `gz` DISABLE KEYS */;
-INSERT INTO `gz` VALUES (39,'2019-01','qwer','1','2',3,4,5,6,7,8,9,10,11,12,'13','745298691@qq.com','1547544188023'),(40,'2019-01','qwer','1','2',3,4,5,6,7,8,9,10,11,12,'13','null','1547544263883'),(41,'2019-01','qwer','1','2',3,4,5,6,7,8,9,10,11,12,'13','745298691@qq.com','1547544702431'),(42,'2019-01','qw','12','2',3,4,5,6,7,8,9,10,11,12,'13','null','1547544852427'),(43,'2019-01','qw','12','2',3,4,5,6,7,8,9,10,11,12,'13','null','1547544945044'),(44,'2019-01','qw','12','2',3,4,5,6,7,8,9,10,11,12,'13','null','1547545032207'),(45,'2019-01','打算','大萨达','交换机',8,8,8,64,8,8,8,8,8,64,'-56','745298691@qq.com','1548644534679');
 /*!40000 ALTER TABLE `gz` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -134,6 +133,31 @@ CREATE TABLE `infoAbout745298691@qq.com` (
 LOCK TABLES `infoAbout745298691@qq.com` WRITE;
 /*!40000 ALTER TABLE `infoAbout745298691@qq.com` DISABLE KEYS */;
 /*!40000 ALTER TABLE `infoAbout745298691@qq.com` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `infoAboutscuxiaoer@126.com`
+--
+
+DROP TABLE IF EXISTS `infoAboutscuxiaoer@126.com`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `infoAboutscuxiaoer@126.com` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `infoid` varchar(100) DEFAULT NULL,
+  `type` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `infoid_UNIQUE` (`infoid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `infoAboutscuxiaoer@126.com`
+--
+
+LOCK TABLES `infoAboutscuxiaoer@126.com` WRITE;
+/*!40000 ALTER TABLE `infoAboutscuxiaoer@126.com` DISABLE KEYS */;
+/*!40000 ALTER TABLE `infoAboutscuxiaoer@126.com` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -195,12 +219,14 @@ DROP TABLE IF EXISTS `userinfo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `userinfo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `name` varchar(50) NOT NULL,
   `yue` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`),
   UNIQUE KEY `userinfo_email_uindex` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -209,7 +235,7 @@ CREATE TABLE `userinfo` (
 
 LOCK TABLES `userinfo` WRITE;
 /*!40000 ALTER TABLE `userinfo` DISABLE KEYS */;
-INSERT INTO `userinfo` VALUES ('745298691@qq.com','dqf009.','qifeng duan',998199);
+INSERT INTO `userinfo` VALUES (2,'745298691@qq.com','dqf009.','段其沣',86800),(3,'scuxiaoer@126.com','dqf009.','scuxiaoer',98600);
 /*!40000 ALTER TABLE `userinfo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -245,10 +271,14 @@ CREATE TABLE `zxdj` (
   `relationship` varchar(50) DEFAULT NULL,
   `relationship_name` varchar(50) DEFAULT NULL,
   `relationship_tel` varchar(50) DEFAULT NULL,
-  `admin` varchar(50) DEFAULT NULL,
+  `lfz` varchar(50) NOT NULL,
+  `userName` varchar(50) DEFAULT NULL,
   `timestamp` mediumtext,
+  `times` int(11) DEFAULT '0',
+  `schoolincome` double DEFAULT '0',
+  `zxsincome` double DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -257,38 +287,8 @@ CREATE TABLE `zxdj` (
 
 LOCK TABLES `zxdj` WRITE;
 /*!40000 ALTER TABLE `zxdj` DISABLE KEYS */;
-INSERT INTO `zxdj` VALUES (15,'周7 ，14:00~17:00','吴薇莉 ，200元/50分钟',600,'成人咨询','其他','1\r\n1','没有','没有','没有','1','1','其他','1','1','1','1','1','1','1','没有','1','1','1','qifeng duan','1549867405181'),(16,'周7 ，14:00~17:00','吴薇莉 ，200元/50分钟',600,'成人咨询','其他','1','没有','没有','没有','1','1','其他','1','1','1','1','1','1','1','没有','1','1','1','qifeng duan','1549868395347'),(17,'20号,6:00~12:00','吴薇莉 ，200元/50分钟',1200,'成人咨询','其他','1','没有','没有','没有','1','1','其他','1','1','1','1','1','1','1','没有','1','1','1','745298691@qq.com','1549869594892');
+INSERT INTO `zxdj` VALUES (50,'每周1：14:00~17:00','吴薇莉（200元/50分钟）',600,'成人咨询','其他','1','没有','没有','没有','1','1','其他','11','1','1','1','1','1','1','没有','1','1','1','745298691@qq.com','段其沣','2019-02-28 19:09:14',1,NULL,NULL),(51,'每周1：1:00~5:00','吴薇莉（200元/50分钟）',800,'成人咨询','其他','1','没有','没有','没有','1','1','其他','1','1','1','1','1','1','1','没有','1','1','1','745298691@qq.com','段其沣','2019-02-28 19:25:39',2,120,680),(52,'190319：1:00~6:00','徐丽（1000元/50分钟）',5000,'成人咨询','其他','1','没有','没有','没有','1','1','其他','1','1','1','1','1','1','1','没有','1','1','1','745298691@qq.com','段其沣','2019-02-28 19:48:54',1,750,4250),(53,'每周1：14:00~17:00','吴薇莉（200元/50分钟）',600,'成人咨询','其他','1','没有','没有','没有','1','1','其他','1','1','1','1','1','1','1','没有','1','1','1','scuxiaoer@126.com','scuxiaoer','2019-02-28 19:54:00',1,90,510),(54,'每周1：1:00~5:00','吴薇莉（200元/50分钟）',800,'成人咨询','其他','1','没有','没有','没有','1','1','其他','1','1','1','1','1','1','1','没有','1','1','1','scuxiaoer@126.com','scuxiaoer','2019-02-28 19:55:56',2,120,680);
 /*!40000 ALTER TABLE `zxdj` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `zxfy`
---
-
-DROP TABLE IF EXISTS `zxfy`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `zxfy` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lfz` varchar(50) DEFAULT NULL,
-  `zxs` varchar(50) DEFAULT NULL,
-  `sj` varchar(50) DEFAULT NULL,
-  `fs` varchar(50) DEFAULT NULL,
-  `ye` int(11) DEFAULT NULL,
-  `fy` int(11) DEFAULT NULL,
-  `jy` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `zxfy`
---
-
-LOCK TABLES `zxfy` WRITE;
-/*!40000 ALTER TABLE `zxfy` DISABLE KEYS */;
-INSERT INTO `zxfy` VALUES (1,'745298691@qq.com','dd','d','d',1,1,1);
-/*!40000 ALTER TABLE `zxfy` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -307,7 +307,7 @@ CREATE TABLE `zxs` (
   `price` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `zxs_email_uindex` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -316,7 +316,7 @@ CREATE TABLE `zxs` (
 
 LOCK TABLES `zxs` WRITE;
 /*!40000 ALTER TABLE `zxs` DISABLE KEYS */;
-INSERT INTO `zxs` VALUES (18,'刘英华','d','liuyinghua@q','女',600),(19,'吴薇莉','d','wwl@q','女',200),(20,'徐丽','d','xl@q','女',1000);
+INSERT INTO `zxs` VALUES (18,'刘英华','d','liuyinghua@q','女',600),(19,'吴薇莉','d','wwl@q','女',200),(20,'徐丽','d','xl@q','女',1000),(21,'d','d','d@q','男',800);
 /*!40000 ALTER TABLE `zxs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -337,7 +337,7 @@ CREATE TABLE `zxs_745298691@qq.com` (
   `fs` varchar(10) DEFAULT NULL,
   `bz` varchar(300) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -346,18 +346,17 @@ CREATE TABLE `zxs_745298691@qq.com` (
 
 LOCK TABLES `zxs_745298691@qq.com` WRITE;
 /*!40000 ALTER TABLE `zxs_745298691@qq.com` DISABLE KEYS */;
-INSERT INTO `zxs_745298691@qq.com` VALUES (4,21,9,11,2,5,'面对面','无'),(5,28,10,13,3,5,'面对面','无'),(6,10,1,1,1,5,'面对面','无'),(7,3,1,0,1,5,'面对面','无'),(8,4,3,19,1,5,'面对面','无'),(9,107,6,9,1,5,'面对面','王胖'),(13,104,6,12,1,5,'面','张三');
 /*!40000 ALTER TABLE `zxs_745298691@qq.com` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `zxs_7@q`
+-- Table structure for table `zxs_d@q`
 --
 
-DROP TABLE IF EXISTS `zxs_7@q`;
+DROP TABLE IF EXISTS `zxs_d@q`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `zxs_7@q` (
+CREATE TABLE `zxs_d@q` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date` tinyint(4) DEFAULT NULL,
   `ks` tinyint(4) DEFAULT NULL,
@@ -371,12 +370,12 @@ CREATE TABLE `zxs_7@q` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `zxs_7@q`
+-- Dumping data for table `zxs_d@q`
 --
 
-LOCK TABLES `zxs_7@q` WRITE;
-/*!40000 ALTER TABLE `zxs_7@q` DISABLE KEYS */;
-/*!40000 ALTER TABLE `zxs_7@q` ENABLE KEYS */;
+LOCK TABLES `zxs_d@q` WRITE;
+/*!40000 ALTER TABLE `zxs_d@q` DISABLE KEYS */;
+/*!40000 ALTER TABLE `zxs_d@q` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -388,7 +387,7 @@ DROP TABLE IF EXISTS `zxs_liuyinghua@q`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `zxs_liuyinghua@q` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `date` tinyint(4) DEFAULT NULL,
+  `date` int(11) DEFAULT NULL,
   `ks` tinyint(4) DEFAULT NULL,
   `js` tinyint(4) DEFAULT NULL,
   `cs` tinyint(4) DEFAULT NULL,
@@ -417,7 +416,7 @@ DROP TABLE IF EXISTS `zxs_wwl@q`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `zxs_wwl@q` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `date` tinyint(4) DEFAULT NULL,
+  `date` int(11) DEFAULT NULL,
   `ks` tinyint(4) DEFAULT NULL,
   `js` tinyint(4) DEFAULT NULL,
   `cs` tinyint(4) DEFAULT NULL,
@@ -425,7 +424,7 @@ CREATE TABLE `zxs_wwl@q` (
   `fs` varchar(10) DEFAULT NULL,
   `bz` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -434,7 +433,7 @@ CREATE TABLE `zxs_wwl@q` (
 
 LOCK TABLES `zxs_wwl@q` WRITE;
 /*!40000 ALTER TABLE `zxs_wwl@q` DISABLE KEYS */;
-INSERT INTO `zxs_wwl@q` VALUES (1,20,6,12,1,5,'面',''),(2,102,15,17,2,5,'面','李四'),(3,107,14,17,3,5,'面','');
+INSERT INTO `zxs_wwl@q` VALUES (8,101,14,17,1,5,'面','scuxiaoer'),(9,101,1,5,1,5,'面','scuxiaoer');
 /*!40000 ALTER TABLE `zxs_wwl@q` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -447,7 +446,7 @@ DROP TABLE IF EXISTS `zxs_xl@q`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `zxs_xl@q` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `date` tinyint(4) DEFAULT NULL,
+  `date` int(11) DEFAULT NULL,
   `ks` tinyint(4) DEFAULT NULL,
   `js` tinyint(4) DEFAULT NULL,
   `cs` tinyint(4) DEFAULT NULL,
@@ -455,7 +454,7 @@ CREATE TABLE `zxs_xl@q` (
   `fs` varchar(10) DEFAULT NULL,
   `bz` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -464,7 +463,7 @@ CREATE TABLE `zxs_xl@q` (
 
 LOCK TABLES `zxs_xl@q` WRITE;
 /*!40000 ALTER TABLE `zxs_xl@q` DISABLE KEYS */;
-INSERT INTO `zxs_xl@q` VALUES (1,107,9,10,1,5,'面','');
+INSERT INTO `zxs_xl@q` VALUES (2,102,8,14,1,5,'面',''),(3,190319,1,6,1,5,'面','段其沣');
 /*!40000 ALTER TABLE `zxs_xl@q` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -477,4 +476,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-02-11 16:28:54
+-- Dump completed on 2019-02-28 22:40:49

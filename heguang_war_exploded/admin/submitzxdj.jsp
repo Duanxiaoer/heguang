@@ -69,6 +69,7 @@
         online = true;
         if (db.queryYuE(userEmail)<totalPrice){
             writer.print("<script>alert('余额不足，请充值。。。');window.location = '../home/myself.jsp'</script>");
+            return;
         }
     }
     if (online){
@@ -77,9 +78,41 @@
 
         //用户余额扣除本次费用
         db.updateYuE(userEmail,-totalPrice);
+        //查询是第几次在这位咨询师这咨询
+        int zcs = db.queryZXCS(zxsName.split("（")[0],userEmail);
+        //目前的分成比例
+        double fcbl = 0;
+        if (zcs<15){
+            fcbl = 0.15;
+        }else if (zcs<30){
+            fcbl = 0.1;
+        }else {
+            fcbl = 0.05;
+        }
+        double schoolIncome = totalPrice*fcbl;
+        double zxsIncome = totalPrice-schoolIncome;
+
         //预约记录写入总表
         db.insertZXDJ(date,zxsName,totalPrice,zxlb, zxwt, qzyy, sfjsgxl, sfjsgjs, sfzs, qita, customerName, sex, customerTel, age, location, education,  job,  income,  marriage
-                , children, relationship, relationship_name,  relationship_tel, userEmail,userName);
+                , children, relationship, relationship_name,  relationship_tel, userEmail,userName,zcs+1,schoolIncome,zxsIncome);
+
+        //解析时间为咨询师时间表格式
+        int dateInt = 0;
+        int ks = 0;
+        int js = 0;
+        if (date.contains("每周日")){
+            dateInt = 107;
+        }else if (date.contains("每周")){
+            System.out.println(1);
+            dateInt = Integer.parseInt(date.split("：")[0].substring(2))+100;
+        }else {
+            System.out.println(2);
+            dateInt = Integer.parseInt(date.split("：")[0]);
+        }
+        ks = Integer.parseInt(date.split("：")[1].split(":")[0]);
+        js = Integer.parseInt(date.split("~")[1].split(":")[0]);
+
+        db.updateZXSTime(zxsName.split("（")[0],userName,dateInt,ks,js);
 
         //通知咨询师
         SentEmail.sendEmail_YuYue(zxsEmail,kuaidiInfo);

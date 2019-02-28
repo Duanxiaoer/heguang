@@ -393,7 +393,7 @@
                                     Calendar ca = Calendar.getInstance();
                                     ca.setTime(nowDate);
 
-                                    SimpleDateFormat hs = new SimpleDateFormat("dd");
+                                    SimpleDateFormat hs = new SimpleDateFormat("YYMMdd");
                                     SimpleDateFormat xq = new SimpleDateFormat("E");
 
                                     int count = 28;//显示的总天数
@@ -412,7 +412,7 @@
                                 %>
                                 <td style="text-align: center;" id="<%=tempDateXQ%>A<%=tempDate%>"
                                     onclick="addSparetime(<%=tempDate%>,this)"><a
-                                        style="text-align: center;color: <%=color%>;"><%=tempDate%>
+                                        style="text-align: center;color: <%=color%>;"><%=tempDate%100%>
                                 </a>
                                 </td>
                                 <%
@@ -637,7 +637,7 @@
 <script>
     function addSparetime(date,obj) {
         var tip = date;
-        if (tip > 100) {
+        if (tip < 100101) {
             tip = "星期";
             switch (date - 100) {
                 case 1:

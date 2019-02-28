@@ -1,6 +1,7 @@
 <%@ page import="heguang.org.cn.DB" %>
 <%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.io.PrintWriter" %><%--
+<%@ page import="java.io.PrintWriter" %>
+<%@ page import="heguang.org.cn.Util" %><%--
   Created by IntelliJ IDEA.
   User: duanqifeng
   Date: 2019/1/12
@@ -90,7 +91,13 @@
 <body>
 
 <%
-    if (session.getAttribute("admin")==null){
+
+    //当前表格中所有咨询师的收入之和
+    int zxsIncomeAll = 0;
+    //当前表格中所有咨询记录中研究院收入之和
+    int schoolIncomeAll = 0;
+
+    if (session.getAttribute("admin") == null) {
         PrintWriter writer = response.getWriter();
         writer.print("<script>window.location = '../home/index.jsp'</script>");
     }
@@ -128,27 +135,28 @@
 
                                 String name = "游客";
                                 String email = "游客";
-                                if (session.getAttribute("name")!=null && session.getAttribute("email")!=null){
+                                if (session.getAttribute("name") != null && session.getAttribute("email") != null) {
                                     name = (String) session.getAttribute("name");
                                     email = (String) session.getAttribute("email");
 
                             %>
-                            <li><a href="../home/myself.jsp?email=<%=email%>"><%=name%></a></li>
+                            <li><a href="../home/myself.jsp?email=<%=email%>"><%=name%>
+                            </a></li>
                             <li><a href="#footer">联系我们 </a></li>
                             <%
-                                if (session.getAttribute("admin")!=null){
+                                if (session.getAttribute("admin") != null) {
 
                             %>
                             <li><a href="../admin/home_menu.html">管理</a></li>
                             <%
 
-                            }else if (session.getAttribute("zxsName")!=null){
+                            } else if (session.getAttribute("zxsName") != null) {
                             %>
                             <li><a href="../zxs/zxs.jsp">管理</a></li>
                             <%
                                 }
 
-                            } else{
+                            } else {
                             %>
                             <li><a href="../login/login.html">登录</a></li>
                             <li><a href="../login/signup.html">注册</a></li>
@@ -190,7 +198,8 @@
                         <h6>Mon - Sun : 09:00 - 18:00</h6>
                     </div>
                     <div class="header-info-box">
-                        <a class="header-quote-btn" href="../home/doctors.jsp">立即预约 <i class="icofont icofont-caret-right"></i></a>
+                        <a class="header-quote-btn" href="../home/doctors.jsp">立即预约 <i
+                                class="icofont icofont-caret-right"></i></a>
                     </div>
                 </div>
                 <!-- end col -->
@@ -236,7 +245,8 @@
                             <ul class="navbar-nav">
                                 <li class="dropdown quick-search"><a href="#" class="nav-link">我想</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="../home/doctors.jsp"><i class="icofont icofont-doctor-alt"></i> 找位医师</a></li>
+                                        <li><a href="../home/doctors.jsp"><i class="icofont icofont-doctor-alt"></i>
+                                            找位医师</a></li>
                                         <li><a href="#"><i class="icofont icofont-medical-sign"></i> 预定测试</a></li>
                                     </ul>
                                 </li>
@@ -343,10 +353,15 @@
             <div class="row">
                 <div style="width: 100%" class="container">
                     <form action="ckgzjl.jsp" method="post">
-                        <div style="padding-left: 5px"><input name="keywords" style="float: left" type="text"
-                                                              placeholder="姓名查询"><input
-                                style="float: left;margin-left: 10px;border-style: hidden;color: #4cae4c" type="submit"
-                                value="查询"></div>
+                        <div style="padding-left: 5px">
+                            <input name="keywords" style="float: left" type="text" placeholder="查询">
+                            <label style="float: left">
+                                <select name="type" style="float:left;margin-left: 10px">
+                                    <option value="zxsName">咨询师名字</option>
+                                    <option value="timestamp">月份</option>
+                                </select>
+                            </label>
+                            <input style="float: left;margin-left: 10px;border-style: hidden;color: #4cae4c" type="submit" value="查询"></div>
                     </form>
                     <br>
                     <br>
@@ -354,22 +369,17 @@
                         <table style="width: 200%">
                             <tr>
                                 <td class="c1">编号</td>
-                                <td class="c1">日期</td>
+                                <td class="c1">月份</td>
                                 <td class="c1">咨询师</td>
                                 <td class="c2">项目名称</td>
                                 <td class="c3">来访者</td>
                                 <td class="1">本月咨询次数</td>
-                                <td class="1">单次费用</td>
-                                <td class="1">来访者上月结余</td>
-                                <td class="1">来访者本月应付</td>
-                                <td class="1">来访者本月实付</td>
-                                <td class="1">来访者本月结余</td>
-                                <td class="1">做账金额</td>
+                                <td class="1">费用标准</td>
+                                <td class="1">本月总费用</td>
                                 <td class="1">咨询总次数</td>
                                 <td class="1">分成比例</td>
                                 <td class="1">给研究院</td>
                                 <td class="1">给咨询师</td>
-                                <th class='c5'>操作</th>
                             </tr>
                             <%
                                 request.setCharacterEncoding("utf-8");
@@ -406,9 +416,13 @@
                                 //**连接数据库**
                                 try {
                                     if (!keywords.equals("")) {
-                                        rs = db.likeQueryGZ("name",keywords);
+                                        String type = "zxsName";
+                                        if (request.getParameter("type")!=null){
+                                            type = request.getParameter("type");
+                                        }
+                                        rs = db.likeQueryZXDJ(type, keywords);
                                     } else {
-                                        rs = db.queryGZ();
+                                        rs = db.queryZXDJ();
                                     }
 //                               获取数据库行数
                                     rs.last();
@@ -418,44 +432,62 @@
                                     if (PageNow > PageAmount) {
                                         PageNow = PageAmount;
                                     }
-//            将当前的rs指针指向要显示的页面首条数据
+//                                  将当前的rs指针指向要显示的页面首条数据
                                     if (PageAmount > 0) {
                                         rs.absolute((PageNow - 1) * PageSize + 1);
                                     }
-//            循环获取数据
+//                                  循环获取数据
                                     for (int i = 0; i < PageSize && !rs.isAfterLast(); i++) {
-                                        if (Integer.parseInt(rs.getString("id")) % 2 == 0) {
-                                            red = "#FFF";
+                                        //A在B这的总咨询次数
+                                        int zcs = db.queryZXCS(rs.getString("zxsName").split("（")[0], rs.getString("lfz"));
+                                        int benyuezcs = db.queryBYZXCS(rs.getString("zxsName").split("（")[0], rs.getString("lfz"));
+                                        double schoolIncomeMonth = db.queryIncomeFenPei(rs.getString("zxsName").split("（")[0], rs.getString("lfz"), "schoolincome");
+                                        double zxsIncomeMonth = db.queryIncomeFenPei(rs.getString("zxsName").split("（")[0], rs.getString("lfz"), "zxsincome");
+                                        //目前的分成比例
+                                        double fcbl = 0;
+                                        if (zcs < 16) {
+                                            fcbl = 0.15;
+                                        } else if (zcs < 31) {
+                                            fcbl = 0.1;
                                         } else {
-//                                            red = "#ff4d37";//红色
-                                            red = "#FFF";
+                                            fcbl = 0.05;
                                         }
                             %>
                             <tr>
-                                <td><%=rs.getString("id")%></td>
-                                <td><%=rs.getString("date")%></td>
-                                <td><%=rs.getString("name")%></td>
-                                <td><%=rs.getString("type")%></td>
-                                <td><%=rs.getString("visitor")%></td>
-                                <td><%=rs.getString("times")%></td>
-                                <td><%=rs.getString("price")%></td>
-                                <td><%=rs.getString("lastbalance")%></td>
-                                <td><%=rs.getString("totalprice")%></td>
-                                <td><%=rs.getString("pay")%></td>
-                                <td><%=rs.getString("balance")%></td>
-                                <td><%=rs.getString("zzje")%></td>
-                                <td><%=rs.getString("zcs")%></td>
-                                <td><%=rs.getString("fcbl")%></td>
-                                <td><%=rs.getString("school")%></td>
-                                <td><%=rs.getString("income")%></td>
-                                <td>
-                                    <a style="color: #ff2525">
-                                        <input type="button" onclick="delJL('gz',<%=rs.getInt("id")%>)" value="删除" id="<%=rs.getString("id")%>">
-                                    </a>
+                                <td><%=rs.getString("id")%>
+                                </td>
+                                <td><%=rs.getString("timestamp").substring(2, 7)%>
+                                </td>
+                                <td><%=rs.getString("zxsName").split("（")[0]%>
+                                </td>
+                                <td><%=rs.getString("zxlb")%>
+                                </td>
+                                <td><%=rs.getString("userName")%>
+                                </td>
+                                <td><%=benyuezcs%>
+                                </td>
+                                <td><%=rs.getString("zxsName").split("（")[1].split("）")[0]%>
+                                </td>
+                                <td><%=schoolIncomeMonth + zxsIncomeMonth%>
+                                </td>
+                                <td><%=zcs%>
+                                </td>
+                                <td><%=fcbl%>
+                                </td>
+                                <td><%=schoolIncomeMonth%>
+                                </td>
+                                <td><%=zxsIncomeMonth%>
                                 </td>
                             </tr>
                             <%
+                                        zxsIncomeAll += zxsIncomeMonth;
+                                        schoolIncomeAll += schoolIncomeMonth;
                                         rs.next();
+                                        //保证AB对只出现一次
+                                        while (zcs > 1) {
+                                            rs.next();
+                                            --zcs;
+                                        }
                                     }
                                     rs.close();
                                 } catch (Exception e) {
@@ -475,8 +507,8 @@
 
                     <div style="padding-right: 20px;padding-left: 20px">
                         <div style="float: left;width: 20px">
-                            <a href="lrgz.jsp"><input style="color: #ff4828" type="submit" value="添加记录"
-                                                      class="btn btn-primary"></a>
+                            <input style="color: #ff4828" type="text" value="咨询师收入：<%=zxsIncomeAll%>">
+                            <input style="color: #ff4828" type="text" value="研究院收入：<%=schoolIncomeAll%>">
                         </div>
                         <div style="float: right">
                             <a href="ckgzjl.jsp?pgno=<%=PageNow-1 %>&pgcnt=66" class="action-button"><input
@@ -492,7 +524,7 @@
                     <br><br>
                     <br><br>
 
-                    <p>页数:<%=PageAmount %>/<%=PageNow%>&nbsp;&nbsp;&nbsp;总卡数:<%=RowAmount %>
+                    <p>页数:<%=PageAmount %>/<%=PageNow%>&nbsp;&nbsp;&nbsp;总咨询次数:<%=RowAmount %>
                     </p>
 
                 </div>
@@ -661,35 +693,34 @@
 </body>
 <script>
     //滚动时保存滚动位置
-    $(window).scroll(function(){
-        if($(document).scrollTop()!=0){
+    $(window).scroll(function () {
+        if ($(document).scrollTop() != 0) {
             sessionStorage.setItem("offsetTop", $(window).scrollTop());
         }
     });
     //onload时，取出并滚动到上次保存位置
-    window.onload = function(){
+    window.onload = function () {
         var offset = sessionStorage.getItem("offsetTop");
         $(document).scrollTop(offset);
     };
 
 
-
-    function delJL(tableName,id) {
-        if (document.getElementById(id).getAttribute("value") === "已删除"){
+    function delJL(tableName, id) {
+        if (document.getElementById(id).getAttribute("value") === "已删除") {
             alert("该记录已经被删除！");
-        }else if (confirm('确定要删除这个条记录吗？')){
-            document.getElementById(id).setAttribute("value","已删除");
-            test(tableName,id);
+        } else if (confirm('确定要删除这个条记录吗？')) {
+            document.getElementById(id).setAttribute("value", "已删除");
+            test(tableName, id);
         }
     }
 
 
-    function test(tableName,id) {
+    function test(tableName, id) {
         $.ajax({
-            url:"scjl.jsp",
-            type:"POST",
-            data:{tableName:tableName,id:id},
-            success:function(){
+            url: "scjl.jsp",
+            type: "POST",
+            data: {tableName: tableName, id: id},
+            success: function () {
                 alert("删除成功");
             }
 

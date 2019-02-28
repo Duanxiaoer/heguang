@@ -390,7 +390,7 @@
                                         Calendar ca = Calendar.getInstance();
                                         ca.setTime(nowDate);
 
-                                        SimpleDateFormat hs = new SimpleDateFormat("dd");
+                                        SimpleDateFormat hs = new SimpleDateFormat("YYMMdd");
                                         SimpleDateFormat xq = new SimpleDateFormat("E");
 
                                         int count = 28;//显示的总天数
@@ -410,7 +410,7 @@
                                     %>
                                     <td style="text-align: center;" id="<%=tempDateXQ%>A<%=tempDate%>"
                                         onclick="Sparetime(<%=tempDate%>,this)"><a
-                                            style="text-align: center;color: <%=color%>;"><%=tempDate%>
+                                            style="text-align: center;color: <%=color%>;"><%=tempDate%100%>
                                     </a>
                                     </td>
                                     <%
@@ -741,12 +741,11 @@
                 }else {
                     var alltime = document.getElementById("alltime");
                     alltime.innerHTML = "";
-
                     for (var i=0;i<result.length;++i){
                         var ks = parseInt(result[i].ks);
                         var js = parseInt(result[i].js);
                         if (result[i].bz === "") {
-                            alltime.innerHTML = "<input type='button' style='background-color: greenyellow' value='"+ks+":00-"+js+":00,"+result[i].fs+"' onclick='gotoYY("+date+","+ks+","+js+")' >";
+                            alltime.innerHTML += "<input type='button' style='background-color: greenyellow' value='"+ks+":00-"+js+":00,"+result[i].fs+"' onclick='gotoYY("+date+","+ks+","+js+")' >";
                         }
                     }
                 }
@@ -769,7 +768,7 @@
                     var ks = parseInt(result[i].ks);
                     var js = parseInt(result[i].js);
                     if (result[i].bz === "") {
-                        alltime.innerHTML = "<input type='button' style='background-color: greenyellow' value='"+ks+":00-"+js+":00,"+result[i].fs+"' onclick='gotoYY("+date+","+ks+","+js+")' >";
+                        alltime.innerHTML += "<input type='button' style='background-color: greenyellow' value='"+ks+":00-"+js+":00,"+result[i].fs+"' onclick='gotoYY("+date+","+ks+","+js+")' >";
                     }
                 }
             }

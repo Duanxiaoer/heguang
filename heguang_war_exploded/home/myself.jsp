@@ -315,7 +315,7 @@
                 <div style="width: 100%;height: 400px;margin:2%;padding: 5px;">
                     <h5>咨询记录</h5>
                     <div style="width: 100%;height: 300px;margin:2%;overflow: scroll;border-style: solid">
-                        <table style="width: 200%;overflow: scroll">
+                        <table style="width: 150%;overflow: scroll">
                             <tr>
                                 <th>序号</th>
                                 <th>预约时间</th>
@@ -364,18 +364,14 @@
                                 if (session.getAttribute("zxsName") != null){
                                     resultSetZX = db.queryZXFY("zxsName",session.getAttribute("name").toString());
                                 }else {
-                                    resultSetZX = db.queryZXFY("admin",session.getAttribute("email").toString());
+                                    resultSetZX = db.queryZXFY("lfz",session.getAttribute("email").toString());
                                 }
 
                                 try {
 
                                     int count = 1;
                                     while (resultSetZX.next()){
-                                        String dateString = "";
-                                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                                        long lt = new Long(resultSetZX.getString("timestamp"));
-                                        Date date = new Date(lt);
-                                        dateString = simpleDateFormat.format(date);
+                                        String dateString = resultSetZX.getString("timestamp");
                                         String[] color = {"#853729","#772671","#043381","650365","#800080"};
                                         Random random = new Random();
                                         int index = random.nextInt(5);
@@ -453,6 +449,7 @@
                         <table>
                             <tr>
                                 <th>时间</th>
+                                <th>消费项目</th>
                                 <th>订单号</th>
                                 <th>金额</th>
                             </tr>
