@@ -424,14 +424,20 @@
                                     <td  id="jj1<%=resultSetZX.getString("id")%>"><button onclick="receive('zxdj','1',<%=resultSetZX.getString("id")%>)">接受</button></td>
                                     <td  id="jj2<%=resultSetZX.getString("id")%>"><button onclick="receive('zxdj','2',<%=resultSetZX.getString("id")%>)">拒绝</button></td>
                                     </div>
-                                    <%}%>
+                                    <%
+                                        }
+                                    %>
                                 </tr>
                                 <%
-                                            zongjine += Integer.parseInt(resultSetZX.getString("totalPrice"));
-                                            //本月未取消金额
-                                            if (nowMonth.equals(dateString.substring(0,7))&&resultSetZX.getString("cancel").equals("1")){
-                                                benyuezongjine += Integer.parseInt(resultSetZX.getString("totalPrice"));
+                                            //未取消金额
+                                            if (resultSetZX.getString("cancel").equals("1")){
+                                                zongjine += Integer.parseInt(resultSetZX.getString("totalPrice"));
+                                                //本月未取消金额
+                                                if (nowMonth.equals(dateString.substring(0,7))){
+                                                    benyuezongjine += Integer.parseInt(resultSetZX.getString("totalPrice"));
+                                                }
                                             }
+
                                         }
                                 }catch (Exception e){
                                     e.printStackTrace();
