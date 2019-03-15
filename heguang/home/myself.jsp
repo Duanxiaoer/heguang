@@ -428,7 +428,8 @@
                                 </tr>
                                 <%
                                             zongjine += Integer.parseInt(resultSetZX.getString("totalPrice"));
-                                            if (nowMonth.equals(dateString.substring(0,7))){
+                                            //本月未取消金额
+                                            if (nowMonth.equals(dateString.substring(0,7))&&resultSetZX.getString("cancel").equals("1")){
                                                 benyuezongjine += Integer.parseInt(resultSetZX.getString("totalPrice"));
                                             }
                                         }
