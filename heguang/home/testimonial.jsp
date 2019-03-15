@@ -8,9 +8,7 @@
     <title></title>
     <!-- Bootstrap core CSS -->
     <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Font  -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,400i,500,500i,600,700|Raleway:400,400i,500i,600,700" rel="stylesheet"> 
-    <!-- flaticon icon -->
+	<!-- flaticon icon -->
     <link rel="stylesheet" href="assets/fonts/icon-font.min.css">
     <!-- icofont icon -->
     <link rel="stylesheet" href="assets/fonts/icofont.css">
